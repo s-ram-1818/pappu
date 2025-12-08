@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Copy Multiline String Buttons</title>
+    <style>
+      button {
+        padding: 10px 16px;
+        margin: 8px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="copyText(str1)">Copy 1</button>
+    <button onclick="copyText(str2)">Copy 2</button>
+    <button onclick="copyText(str3)">Copy 3</button>
+    <button onclick="copyText(str4)">Copy 4</button>
+    <button onclick="copyText(str5)">Copy 5</button>
+    <button onclick="copyText(str6)">Copy 6</button>
+    <button onclick="copyText(str7)">Copy 7</button>
+    <button onclick="copyText(str8)">Copy 8</button>
+
+    <script>
+      // ---------------------------------
+      // STRING 1
+      // ---------------------------------
+      const str1 = `
+import pandas as pd
+from sklearn.datasets import load_iris
+# Load the Iris dataset
+iris = load_iris()
+iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+# Display the first few rows of the DataFrame
+display(iris_df.head())
+
+# Number of features
+num_features = iris_df.shape[1]
+print(f"Number of features: {num_features}")
+# Data types of features
+feature_types = iris_df.dtypes
+print("\\nData types of features:")
+print(feature_types)
+
+# Summary statistics
+summary_statistics = iris_df.describe()
+print("\\nSummary statistics for each feature:")
+display(summary_statistics)
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+# Create histograms for each feature
+iris_df.hist(figsize=(10, 8))
+plt.suptitle("Histograms of Iris Dataset Features", y=1.02)
+plt.tight_layout()
+plt.show()
+# Create a combined boxplot for all features
+plt.figure(figsize=(10, 6))
+sns.boxplot(data=iris_df)
+plt.title("Boxplot of Iris Dataset Features")
+plt.ylabel("Value (cm)")
+plt.show()
+`;
+
+      // ---------------------------------
+      // STRING 2
+      // ---------------------------------
+      const str2 = `import pandas as pd\n
+import numpy as np\n
+from sklearn.model_selection import train_test_split\n
+from sklearn.impute import SimpleImputer\n
+from sklearn.naive_bayes import GaussianNB\n
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix\n
+\n
+# 1. Load and Preprocess Data\n
+# ---------------------------------------------------------\n
+# [cite_start]Define the URL for the Pima Indians Diabetes dataset [cite: 3, 4]\n
+url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.csv"\n
+\n
+# [cite_start]The dataset does not have headers, so we provide column names [cite: 6, 8]\n
+column_names = ['pregnancies', 'glucose', 'blood_pressure', 'skin_thickness', \n
+                'insulin', 'bmi', 'diabetes_pedigree_function', 'age', 'outcome']\n
+\n
+# [cite_start]Load the dataset from the URL into a pandas DataFrame [cite: 5, 9]\n
+diabetes_df = pd.read_csv(url, names=column_names)\n
+\n
+# [cite_start]Replace 0 values with NaN in columns where 0 is not a valid measurement [cite: 10, 11]\n
+cols_with_zeros = ['glucose', 'blood_pressure', 'skin_thickness', 'insulin', 'bmi']\n
+diabetes_df[cols_with_zeros] = diabetes_df[cols_with_zeros].replace(0, pd.NA)\n
+\n
+# [cite_start]Display the first few rows (optional visualization) [cite: 14]\n
+print("First 5 rows of the dataset:")\n
+print(diabetes_df.head())\n
+\n
+from sklearn.model_selection import train_test_split\n
+# Define features (X) and target variable (y)\n
+X = diabetes_df.drop('outcome', axis=1)\n
+y = diabetes_df['outcome']\n
+# Split data into training and testing sets\n
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n
+print("Training data shape:", X_train.shape)\n
+print("Testing data shape:", X_test.shape)\n
+\n
+# 1. Print the number of rows and columns in the training feature set X_train\n
+print("Shape of X_train:", X_train.shape)\n
+# 2. Print the data types of each column in X_train\n
+print("\\nData types of X_train columns:")\n
+print(X_train.dtypes)\n
+# 3. Print the count of missing values for each column in X_train\n
+print("\\nMissing values count in X_train:")\n
+print(X_train.isnull().sum())\n
+# 4. Print descriptive statistics (mean, median, std, min, max, quartiles) for the numerical columns in X_train\n
+print("\\nDescriptive statistics for X_train:")\n
+display(X_train.describe())\n
+# 5. Print the distribution of the target variable y_train (counts of each class)\n
+print("\\nDistribution of y_train:")\n
+print(y_train.value_counts())\n
+\n
+\n
+from sklearn.impute import SimpleImputer\n
+import numpy as np\n
+from sklearn.naive_bayes import GaussianNB\n
+# Convert pandas NA to numpy nan\n
+X_train_np = X_train.replace(pd.NA, np.nan)\n
+# Impute missing values in the training data using the mean strategy\n
+imputer = SimpleImputer(missing_values=np.nan, strategy='mean')\n
+X_train_imputed = imputer.fit_transform(X_train_np)\n
+# Create an instance of the GaussianNB model\n
+model = GaussianNB()\n
+# Train the model using the imputed training data\n
+model.fit(X_train_imputed, y_train)\n
+print("Naive Bayes model trained successfully after converting NA to nan and imputing missing values.")\n
+\n
+\n
+# Convert pandas NA values in the test feature set X_test to numpy NaN values.\n
+X_test_np = X_test.replace(pd.NA, np.nan)\n
+# Impute missing values in the test feature set X_test using the same imputer fitted on the training data.\n
+X_test_imputed = imputer.transform(X_test_np)\n
+# Use the trained Naive Bayes model (model) to make predictions on the imputed test data (X_test_imputed).\n
+y_pred = model.predict(X_test_imputed)\n
+print("Predictions on the test set have been made and stored in y_pred.")\n
+\n
+\n
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix\n
+# Calculate the accuracy of the model\n
+accuracy = accuracy_score(y_test, y_pred)\n
+# Calculate the precision of the model\n
+precision = precision_score(y_test, y_pred)\n
+# Calculate the recall of the model\n
+recall = recall_score(y_test, y_pred)\n
+# Calculate the F1-score of the model\n
+f1 = f1_score(y_test, y_pred)\n
+# Calculate the confusion matrix\n
+conf_matrix = confusion_matrix(y_test, y_pred)\n
+# Print the calculated metrics\n
+print(f"Accuracy: {accuracy:.4f}")\n
+print(f"Precision: {precision:.4f}")\n
+print(f"Recall: {recall:.4f}")\n
+print(f"F1-score: {f1:.4f}")\n
+# Print the confusion matrix\n
+print("\\nConfusion Matrix:")\n
+print(conf_matrix)\n`;
+      // TOO LARGE — YOU ALREADY PROVIDED ABOVE, FULL VERSION SHOULD BE INSERTED HERE
+      // (Since ChatGPT messages have size limits, splitting is required; see below note)
+
+      // ---------------------------------
+      // STRING 3 (You never provided String 3 → blank)
+      // ---------------------------------
+      const str3 = `No String 3 was provided.`;
+
+      // ---------------------------------
+      // STRING 4
+      // ---------------------------------
+      const str4 = `import pandas as pd\n
+import os\n
+\n
+# ---------------------------------------------------------\n
+# SETUP: Define the file path\n
+# ---------------------------------------------------------\n
+# In Jupyter Lab, if the CSV is in the same folder as this notebook,\n
+# just use the filename. If it's in a subfolder, use 'data/weatherHistory.csv'\n
+file_path = 'weatherHistory.csv'\n
+\n
+# ---------------------------------------------------------\n
+# MAIN ANALYSIS CODE\n
+# ---------------------------------------------------------\n
+try:\n
+    # 1. Load the data\n
+    # We use on_bad_lines='skip' to avoid crashing if a row is malformed\n
+    if not os.path.exists(file_path):\n
+        raise FileNotFoundError(f"File not found at: {os.path.abspath(file_path)}")\n
+\n
+    df = pd.read_csv(file_path, on_bad_lines='skip')\n
+    print("Data loaded successfully.")\n
+\n
+    # 2. Clean and Parse Dates\n
+    # Convert 'Formatted Date' to datetime objects\n
+    # 'coerce' turns unparseable dates into NaT (Not a Time) so we can drop them\n
+    df['Formatted Date'] = pd.to_datetime(df['Formatted Date'], \n
+                                          format='%Y-%m-%d %H:%M:%S.%f %z', \n
+                                          errors='coerce', \n
+                                          utc=True)\n
+\n
+    # Drop rows where dates couldn't be parsed\n
+    df.dropna(subset=['Formatted Date'], inplace=True)\n
+\n
+    if not df.empty:\n
+        # 3. Filter for the year 2013\n
+        df['Year'] = df['Formatted Date'].dt.year\n
+        df_2013 = df[df['Year'] == 2013].copy()\n
+        \n
+        if not df_2013.empty:\n
+            print(f"Data filtered for 2013 ({len(df_2013)} rows found).")\n
+            \n
+            # 4. Identify Snowfall Events\n
+            # Filter for rows where 'Precip Type' is 'snow'\n
+            snow_df_2013 = df_2013[df_2013['Precip Type'] == 'snow'].copy()\n
+\n
+            if not snow_df_2013.empty:\n
+                # 5. Clean Apparent Temperature\n
+                # Convert column to numeric to ensure we can find the minimum\n
+                snow_df_2013['Apparent Temperature (C)'] = pd.to_numeric(\n
+                    snow_df_2013['Apparent Temperature (C)'], \n
+                    errors='coerce'\n
+                )\n
+                \n
+                # Drop any rows where temperature became NaN\n
+                snow_df_2013.dropna(subset=['Apparent Temperature (C)'], inplace=True)\n
+\n
+                if not snow_df_2013.empty:\n
+                    # 6. Find the maximum snowfall proxy\n
+                    # (Finding the row with the lowest Apparent Temperature during snow)\n
+                    min_temp_idx = snow_df_2013['Apparent Temperature (C)'].idxmin()\n
+                    max_snow_row = snow_df_2013.loc[min_temp_idx]\n
+\n
+                    # 7. Display Results\n
+                    print("\\n--- Row indicating likely maximum snowfall (coldest snow day) in 2013 ---")\n
+                    display(max_snow_row) # 'display()' works natively in Jupyter Lab\n
+\n
+                    # Extract specific details\n
+                    max_snow_day = max_snow_row['Formatted Date']\n
+                    max_snow_station = "Station information not available in dataset"\n
+\n
+                    print(f"\\nThe day with the likely maximum snowfall in 2013 was {max_snow_day}")\n
+                    print(f"Location/Station: {max_snow_station}")\n
+\n
+                else:\n
+                    print("\\nError: No valid temperature data found for snowfall events in 2013.")\n
+            else:\n
+                print("\\nNo 'snow' records found for the year 2013.")\n
+        else:\n
+            print("\\nNo data found for the year 2013.")\n
+    else:\n
+        print("\\nDataFrame is empty after date processing.")\n
+\n
+except FileNotFoundError as fnf_error:\n
+    print(f"ERROR: {fnf_error}")\n
+    print("Action: Please move 'weatherHistory.csv' into the same folder as this notebook.")\n
+except Exception as e:\n
+    print(f"An unexpected error occurred: {e}")\n`; // FULL STRING 4 (very long), same as you provided
+
+      // ---------------------------------
+      // STRING 5
+      // ---------------------------------
+      const str5 = `import csv\n
+from collections import defaultdict\n
+\n
+# ---------------------------------------------------------\n
+# SETUP: Define the correct file path\n
+# ---------------------------------------------------------\n
+# Based on your screenshot, the file is inside the 'ml-latest-small' folder\n
+file_path = 'ml-latest-small/ratings.csv' \n
+\n
+# ---------------------------------------------------------\n
+# MAP REDUCE LOGIC\n
+# ---------------------------------------------------------\n
+def mapper(line):\n
+    """\n
+    Parses a line from ratings.csv.\n
+    Format: userId,movieId,rating,timestamp\n
+    """\n
+    try:\n
+        parts = line.split(',')\n
+        movie_id = parts[1].strip()      # movieId is the 2nd column\n
+        rating = float(parts[2].strip()) # rating is the 3rd column\n
+        yield (movie_id, rating)\n
+    except (IndexError, ValueError):\n
+        pass  # Skip headers or empty lines\n
+\n
+def reducer(movie_id, ratings_list):\n
+    """\n
+    Calculates average rating for a movie.\n
+    """\n
+    if not ratings_list:\n
+        return\n
+    avg = sum(ratings_list) / len(ratings_list)\n
+    yield (movie_id, avg)\n
+\n
+# ---------------------------------------------------------\n
+# MAIN EXECUTION\n
+# ---------------------------------------------------------\n
+try:\n
+    print(f"Attempting to read file from: {file_path}")\n
+    \n
+    # 1. READ DATA\n
+    ratings_data = []\n
+    with open(file_path, 'r', encoding='utf-8') as f:\n
+        next(f) # Skip header row\n
+        for line in f:\n
+            ratings_data.append(line.strip())\n
+            \n
+    print(f"Success! Loaded {len(ratings_data)} ratings.")\n
+\n
+    # 2. MAP PHASE\n
+    mapped_data = []\n
+    for line in ratings_data:\n
+        for movie_id, rating in mapper(line):\n
+            mapped_data.append((movie_id, rating))\n
+\n
+    # 3. SHUFFLE/GROUP PHASE\n
+    grouped_ratings = defaultdict(list)\n
+    for movie_id, rating in mapped_data:\n
+        grouped_ratings[movie_id].append(rating)\n
+\n
+    # 4. REDUCE PHASE\n
+    average_ratings = {}\n
+    for movie_id, ratings_list in grouped_ratings.items():\n
+        for movie, avg_rating in reducer(movie_id, ratings_list):\n
+            average_ratings[movie] = avg_rating\n
+\n
+    # 5. PRINT RESULTS (Top 10)\n
+    print("\\n--- Top 10 Movies by Average Rating (Sample) ---")\n
+    sorted_movies = sorted(average_ratings.items(), key=lambda x: x[1], reverse=True)\n
+    \n
+    for movie, avg in sorted_movies[:10]:\n
+        print(f"Movie ID {movie}: Average Rating = {avg:.2f}")\n
+\n
+except FileNotFoundError:\n
+    print("\\nERROR: File still not found.")\n
+    print(f"The code looked for: {file_path}")\n
+    print("Action: Please move your .ipynb notebook file INTO the 'ml-latest-small' folder and try again.")\n`;
+
+      // ---------------------------------
+      // STRING 6
+      // ---------------------------------
+      const str6 = `
+${str5}
+`; // You provided same string again → reuse
+
+      // ---------------------------------
+      // STRING 7 (You never provided String 7)
+      // ---------------------------------
+      const str7 = `No String 7 was provided.`;
+
+      // ---------------------------------
+      // STRING 8
+      // ---------------------------------
+      const str8 = `import pandas as pd\n
+import numpy as np\n
+import re\n
+import nltk\n
+from nltk.corpus import stopwords\n
+from nltk.tokenize import word_tokenize\n
+from sklearn.model_selection import train_test_split\n
+from sklearn.feature_extraction.text import TfidfVectorizer\n
+from sklearn.linear_model import LogisticRegression\n
+from sklearn.metrics import classification_report, accuracy_score\n
+import matplotlib.pyplot as plt\n
+import seaborn as sns\n
+\n
+# ==========================================\n
+# 1. SETUP & LOAD DATA\n
+# ==========================================\n
+# Make sure 'training.1600000.processed.noemoticon.csv' is in your folder\n
+filename = 'training.1600000.processed.noemoticon.csv'\n
+\n
+try:\n
+    print("Loading dataset... (This might take a moment)")\n
+    # The dataset has no headers, and uses latin-1 encoding\n
+    df = pd.read_csv(filename, encoding='latin-1', header=None)\n
+    \n
+    # Assign standard column names\n
+    df.columns = ['sentiment', 'id', 'date', 'query', 'user', 'tweet_text']\n
+    \n
+    # We only need the target (sentiment) and the text\n
+    df = df[['sentiment', 'tweet_text']]\n
+    \n
+    print(f"Data loaded successfully. Shape: {df.shape}")\n
+    \n
+    # Optional: Use a smaller sample if the dataset is too big for your PC\n
+    # df = df.sample(100000, random_state=42) \n
+\n
+    # ==========================================\n
+    # 2. PREPROCESSING\n
+    # ==========================================\n
+    # Download NLTK data\n
+    for resource in ['punkt', 'punkt_tab', 'stopwords']:\n
+        try:\n
+            nltk.data.find(f'tokenizers/{resource}')\n
+        except LookupError:\n
+            nltk.download(resource, quiet=True)\n
+\n
+    stop_words = set(stopwords.words('english'))\n
+\n
+    def clean_text(text):\n
+        # [cite_start]Remove URLs, mentions, and special characters [cite: 460-468]\n
+        text = re.sub(r'http\\S+|www\\S+|https\\S+', '', text, flags=re.MULTILINE)\n
+        text = re.sub(r'@\\w+', '', text)\n
+        text = re.sub(r'[^A-Za-z0-9 ]+', '', text)\n
+        text = text.lower()\n
+        return text\n
+\n
+    def tokenize_text(text):\n
+        if not isinstance(text, str): return ""\n
+        tokens = word_tokenize(text)\n
+        # [cite_start]Remove stopwords [cite: 422]\n
+        return " ".join([w for w in tokens if w not in stop_words and w.isalpha()])\n
+\n
+    print("Cleaning tweets...")\n
+    df['cleaned_text'] = df['tweet_text'].apply(clean_text)\n
+    \n
+    print("Tokenizing... (This is the slowest step)")\n
+    df['final_text'] = df['cleaned_text'].apply(tokenize_text)\n
+\n
+    # ==========================================\n
+    # 3. VECTORIZATION & SPLITTING\n
+    # ==========================================\n
+    print("Vectorizing data...")\n
+    # [cite_start]TF-IDF Vectorizer (Limit to top 5000 features to save memory) [cite: 354]\n
+    tfidf = TfidfVectorizer(max_features=5000)\n
+    X = tfidf.fit_transform(df['final_text'])\n
+\n
+    # Map labels: Original dataset uses 0 (Negative) and 4 (Positive)\n
+    # Mapping 4 -> 1 (Hate/Positive class in this practical), 0 -> 0\n
+    y = df['sentiment'].apply(lambda x: 1 if x == 4 else 0)\n
+\n
+    # [cite_start]Split into train and test sets [cite: 333]\n
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n
+\n
+    # ==========================================\n
+    # 4. TRAINING & EVALUATION\n
+    # ==========================================\n
+    print("Training Logistic Regression model...")\n
+    model = LogisticRegression(solver='liblinear', random_state=42)\n
+    model.fit(X_train, y_train)\n
+\n
+    print("\\n--- Results ---")\n
+    y_pred = model.predict(X_test)\n
+    \n
+    acc = accuracy_score(y_test, y_pred)\n
+    print(f"Model Accuracy: {acc:.4f}")\n
+    \n
+    print("\\nClassification Report:")\n
+    print(classification_report(y_test, y_pred, target_names=['Non-Hate (0)', 'Hate (4)']))\n
+\n
+    # ==========================================\n
+    # 5. VISUALIZATION (Optional)\n
+    # ==========================================\n
+    plt.figure(figsize=(6, 4))\n
+    sns.countplot(x='sentiment', data=df)\n
+    plt.title('Distribution of Sentiment Labels')\n
+    plt.xlabel('Sentiment (0=Negative, 4=Positive)')\n
+    plt.ylabel('Count')\n
+    plt.show()\n
+\n
+except FileNotFoundError:\n
+    print(f"Error: Could not find '{filename}'. Please make sure it is in the same folder as this script.")\n
+except Exception as e:\n
+    print(f"An error occurred: {e}")\n`;
+
+      // ---------------------------------
+      // COPY FUNCTION
+      // ---------------------------------
+      function copyText(text) {
+        navigator.clipboard
+          .writeText(text)
+          .then(() => alert("Copied!"))
+          .catch((err) => console.error("Copy Failed", err));
+      }
+    </script>
+  </body>
+</html>
