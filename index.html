@@ -13,155 +13,169 @@
     </style>
   </head>
   <body>
-    <button onclick="copyText(str1)">Copy 1</button>
-    <button onclick="copyText(str2)">Copy 2</button>
-    <button onclick="copyText(str3)">Copy 3</button>
-    <button onclick="copyText(str4)">Copy 4</button>
-    <button onclick="copyText(str5)">Copy 5</button>
-    <button onclick="copyText(str6)">Copy 6</button>
-    <button onclick="copyText(str7)">Copy 7</button>
-    <button onclick="copyText(str8)">Copy 8</button>
-    <button onclick="copyText(str9)">link</button>
+    <div>
+      <h1>DA</h1>
+      <button onclick="copyText(str1)">Copy 1</button>
+      <button onclick="copyText(str2)">Copy 2</button>
+      <button onclick="copyText(str3)">Copy 3</button>
+      <button onclick="copyText(str4)">Copy 4</button>
+      <button onclick="copyText(str5)">Copy 5</button>
+      <button onclick="copyText(str6)">Copy 6</button>
+      <button onclick="copyText(str7)">Copy 7</button>
+      <button onclick="copyText(str8)">Copy 8</button>
+      <button onclick="copyText(str9)">link</button>
+    </div>
+    <div>
+      <h1>AI</h1>
+      <button onclick="copyText(str10)">Copy 1</button>
+      <button onclick="copyText(str11)">Copy 2</button>
+      <button onclick="copyText(str12)">Copy 3</button>
+      <button onclick="copyText(str13)">Copy 4</button>
+      <button onclick="copyText(str14)">Copy 5</button>
+      <button onclick="copyText(str15)">Copy 6</button>
+      <button onclick="copyText(str16)">Copy 7</button>
+      <button onclick="copyText(str17)">Copy 8</button>
+    </div>
 
     <script>
       // ---------------------------------
       // STRING 1
       // ---------------------------------
       const str1 = `
-    import pandas as pd
-    from sklearn.datasets import load_iris
-    # Load the Iris dataset
-    iris = load_iris()
-    iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
-    # Display the first few rows of the DataFrame
-    display(iris_df.head())
+                      import pandas as pd
+                      from sklearn.datasets import load_iris
+                      # Load the Iris dataset
+                      iris = load_iris()
+                      iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+                      # Display the first few rows of the DataFrame
+                      display(iris_df.head())
 
-    # Number of features
-    num_features = iris_df.shape[1]
-    print(f"Number of features: {num_features}")
-    # Data types of features
-    feature_types = iris_df.dtypes
-    print("\\nData types of features:")
-    print(feature_types)
+                      # Number of features
+                      num_features = iris_df.shape[1]
+                      print(f"Number of features: {num_features}")
+                      # Data types of features
+                      feature_types = iris_df.dtypes
+                      print("\\nData types of features:")
+                      print(feature_types)
 
-    # Summary statistics
-    summary_statistics = iris_df.describe()
-    print("\\nSummary statistics for each feature:")
-    display(summary_statistics)
+                      # Summary statistics
+                      summary_statistics = iris_df.describe()
+                      print("\\nSummary statistics for each feature:")
+                      display(summary_statistics)
 
-    import matplotlib.pyplot as plt
-    import seaborn as sns
-    # Create histograms for each feature
-    iris_df.hist(figsize=(10, 8))
-    plt.suptitle("Histograms of Iris Dataset Features", y=1.02)
-    plt.tight_layout()
-    plt.show()
-    # Create a combined boxplot for all features
-    plt.figure(figsize=(10, 6))
-    sns.boxplot(data=iris_df)
-    plt.title("Boxplot of Iris Dataset Features")
-    plt.ylabel("Value (cm)")
-    plt.show()
-    `;
+                      import matplotlib.pyplot as plt
+                      import seaborn as sns
+                      # Create histograms for each feature
+                      iris_df.hist(figsize=(10, 8))
+                      plt.suptitle("Histograms of Iris Dataset Features", y=1.02)
+                      plt.tight_layout()
+                      plt.show()
+                      # Create a combined boxplot for all features
+                      plt.figure(figsize=(10, 6))
+                      sns.boxplot(data=iris_df)
+                      plt.title("Boxplot of Iris Dataset Features")
+                      plt.ylabel("Value (cm)")
+                      plt.show()
+                      `;
 
       // ---------------------------------
       // STRING 2
       // ---------------------------------
       const str2 = `import pandas as pd\n
-    import numpy as np\n
-    from sklearn.model_selection import train_test_split\n
-    from sklearn.impute import SimpleImputer\n
-    from sklearn.naive_bayes import GaussianNB\n
-    from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix\n
-    \n
-    # 1. Load and Preprocess Data\n
-    # ---------------------------------------------------------\n
-    # [cite_start]Define the URL for the Pima Indians Diabetes dataset [cite: 3, 4]\n
-    url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.csv"\n
-    \n
-    # [cite_start]The dataset does not have headers, so we provide column names [cite: 6, 8]\n
-    column_names = ['pregnancies', 'glucose', 'blood_pressure', 'skin_thickness', \n
-                    'insulin', 'bmi', 'diabetes_pedigree_function', 'age', 'outcome']\n
-    \n
-    # [cite_start]Load the dataset from the URL into a pandas DataFrame [cite: 5, 9]\n
-    diabetes_df = pd.read_csv(url, names=column_names)\n
-    \n
-    # [cite_start]Replace 0 values with NaN in columns where 0 is not a valid measurement [cite: 10, 11]\n
-    cols_with_zeros = ['glucose', 'blood_pressure', 'skin_thickness', 'insulin', 'bmi']\n
-    diabetes_df[cols_with_zeros] = diabetes_df[cols_with_zeros].replace(0, pd.NA)\n
-    \n
-    # [cite_start]Display the first few rows (optional visualization) [cite: 14]\n
-    print("First 5 rows of the dataset:")\n
-    print(diabetes_df.head())\n
-    \n
-    from sklearn.model_selection import train_test_split\n
-    # Define features (X) and target variable (y)\n
-    X = diabetes_df.drop('outcome', axis=1)\n
-    y = diabetes_df['outcome']\n
-    # Split data into training and testing sets\n
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n
-    print("Training data shape:", X_train.shape)\n
-    print("Testing data shape:", X_test.shape)\n
-    \n
-    # 1. Print the number of rows and columns in the training feature set X_train\n
-    print("Shape of X_train:", X_train.shape)\n
-    # 2. Print the data types of each column in X_train\n
-    print("\\nData types of X_train columns:")\n
-    print(X_train.dtypes)\n
-    # 3. Print the count of missing values for each column in X_train\n
-    print("\\nMissing values count in X_train:")\n
-    print(X_train.isnull().sum())\n
-    # 4. Print descriptive statistics (mean, median, std, min, max, quartiles) for the numerical columns in X_train\n
-    print("\\nDescriptive statistics for X_train:")\n
-    display(X_train.describe())\n
-    # 5. Print the distribution of the target variable y_train (counts of each class)\n
-    print("\\nDistribution of y_train:")\n
-    print(y_train.value_counts())\n
-    \n
-    \n
-    from sklearn.impute import SimpleImputer\n
-    import numpy as np\n
-    from sklearn.naive_bayes import GaussianNB\n
-    # Convert pandas NA to numpy nan\n
-    X_train_np = X_train.replace(pd.NA, np.nan)\n
-    # Impute missing values in the training data using the mean strategy\n
-    imputer = SimpleImputer(missing_values=np.nan, strategy='mean')\n
-    X_train_imputed = imputer.fit_transform(X_train_np)\n
-    # Create an instance of the GaussianNB model\n
-    model = GaussianNB()\n
-    # Train the model using the imputed training data\n
-    model.fit(X_train_imputed, y_train)\n
-    print("Naive Bayes model trained successfully after converting NA to nan and imputing missing values.")\n
-    \n
-    \n
-    # Convert pandas NA values in the test feature set X_test to numpy NaN values.\n
-    X_test_np = X_test.replace(pd.NA, np.nan)\n
-    # Impute missing values in the test feature set X_test using the same imputer fitted on the training data.\n
-    X_test_imputed = imputer.transform(X_test_np)\n
-    # Use the trained Naive Bayes model (model) to make predictions on the imputed test data (X_test_imputed).\n
-    y_pred = model.predict(X_test_imputed)\n
-    print("Predictions on the test set have been made and stored in y_pred.")\n
-    \n
-    \n
-    from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix\n
-    # Calculate the accuracy of the model\n
-    accuracy = accuracy_score(y_test, y_pred)\n
-    # Calculate the precision of the model\n
-    precision = precision_score(y_test, y_pred)\n
-    # Calculate the recall of the model\n
-    recall = recall_score(y_test, y_pred)\n
-    # Calculate the F1-score of the model\n
-    f1 = f1_score(y_test, y_pred)\n
-    # Calculate the confusion matrix\n
-    conf_matrix = confusion_matrix(y_test, y_pred)\n
-    # Print the calculated metrics\n
-    print(f"Accuracy: {accuracy:.4f}")\n
-    print(f"Precision: {precision:.4f}")\n
-    print(f"Recall: {recall:.4f}")\n
-    print(f"F1-score: {f1:.4f}")\n
-    # Print the confusion matrix\n
-    print("\\nConfusion Matrix:")\n
-    print(conf_matrix)\n`;
+                      import numpy as np\n
+                      from sklearn.model_selection import train_test_split\n
+                      from sklearn.impute import SimpleImputer\n
+                      from sklearn.naive_bayes import GaussianNB\n
+                      from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix\n
+                      \n
+                      # 1. Load and Preprocess Data\n
+                      # ---------------------------------------------------------\n
+                      # [cite_start]Define the URL for the Pima Indians Diabetes dataset [cite: 3, 4]\n
+                      url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.csv"\n
+                      \n
+                      # [cite_start]The dataset does not have headers, so we provide column names [cite: 6, 8]\n
+                      column_names = ['pregnancies', 'glucose', 'blood_pressure', 'skin_thickness', \n
+                                      'insulin', 'bmi', 'diabetes_pedigree_function', 'age', 'outcome']\n
+                      \n
+                      # [cite_start]Load the dataset from the URL into a pandas DataFrame [cite: 5, 9]\n
+                      diabetes_df = pd.read_csv(url, names=column_names)\n
+                      \n
+                      # [cite_start]Replace 0 values with NaN in columns where 0 is not a valid measurement [cite: 10, 11]\n
+                      cols_with_zeros = ['glucose', 'blood_pressure', 'skin_thickness', 'insulin', 'bmi']\n
+                      diabetes_df[cols_with_zeros] = diabetes_df[cols_with_zeros].replace(0, pd.NA)\n
+                      \n
+                      # [cite_start]Display the first few rows (optional visualization) [cite: 14]\n
+                      print("First 5 rows of the dataset:")\n
+                      print(diabetes_df.head())\n
+                      \n
+                      from sklearn.model_selection import train_test_split\n
+                      # Define features (X) and target variable (y)\n
+                      X = diabetes_df.drop('outcome', axis=1)\n
+                      y = diabetes_df['outcome']\n
+                      # Split data into training and testing sets\n
+                      X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n
+                      print("Training data shape:", X_train.shape)\n
+                      print("Testing data shape:", X_test.shape)\n
+                      \n
+                      # 1. Print the number of rows and columns in the training feature set X_train\n
+                      print("Shape of X_train:", X_train.shape)\n
+                      # 2. Print the data types of each column in X_train\n
+                      print("\\nData types of X_train columns:")\n
+                      print(X_train.dtypes)\n
+                      # 3. Print the count of missing values for each column in X_train\n
+                      print("\\nMissing values count in X_train:")\n
+                      print(X_train.isnull().sum())\n
+                      # 4. Print descriptive statistics (mean, median, std, min, max, quartiles) for the numerical columns in X_train\n
+                      print("\\nDescriptive statistics for X_train:")\n
+                      display(X_train.describe())\n
+                      # 5. Print the distribution of the target variable y_train (counts of each class)\n
+                      print("\\nDistribution of y_train:")\n
+                      print(y_train.value_counts())\n
+                      \n
+                      \n
+                      from sklearn.impute import SimpleImputer\n
+                      import numpy as np\n
+                      from sklearn.naive_bayes import GaussianNB\n
+                      # Convert pandas NA to numpy nan\n
+                      X_train_np = X_train.replace(pd.NA, np.nan)\n
+                      # Impute missing values in the training data using the mean strategy\n
+                      imputer = SimpleImputer(missing_values=np.nan, strategy='mean')\n
+                      X_train_imputed = imputer.fit_transform(X_train_np)\n
+                      # Create an instance of the GaussianNB model\n
+                      model = GaussianNB()\n
+                      # Train the model using the imputed training data\n
+                      model.fit(X_train_imputed, y_train)\n
+                      print("Naive Bayes model trained successfully after converting NA to nan and imputing missing values.")\n
+                      \n
+                      \n
+                      # Convert pandas NA values in the test feature set X_test to numpy NaN values.\n
+                      X_test_np = X_test.replace(pd.NA, np.nan)\n
+                      # Impute missing values in the test feature set X_test using the same imputer fitted on the training data.\n
+                      X_test_imputed = imputer.transform(X_test_np)\n
+                      # Use the trained Naive Bayes model (model) to make predictions on the imputed test data (X_test_imputed).\n
+                      y_pred = model.predict(X_test_imputed)\n
+                      print("Predictions on the test set have been made and stored in y_pred.")\n
+                      \n
+                      \n
+                      from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix\n
+                      # Calculate the accuracy of the model\n
+                      accuracy = accuracy_score(y_test, y_pred)\n
+                      # Calculate the precision of the model\n
+                      precision = precision_score(y_test, y_pred)\n
+                      # Calculate the recall of the model\n
+                      recall = recall_score(y_test, y_pred)\n
+                      # Calculate the F1-score of the model\n
+                      f1 = f1_score(y_test, y_pred)\n
+                      # Calculate the confusion matrix\n
+                      conf_matrix = confusion_matrix(y_test, y_pred)\n
+                      # Print the calculated metrics\n
+                      print(f"Accuracy: {accuracy:.4f}")\n
+                      print(f"Precision: {precision:.4f}")\n
+                      print(f"Recall: {recall:.4f}")\n
+                      print(f"F1-score: {f1:.4f}")\n
+                      # Print the confusion matrix\n
+                      print("\\nConfusion Matrix:")\n
+                      print(conf_matrix)\n`;
       // TOO LARGE — YOU ALREADY PROVIDED ABOVE, FULL VERSION SHOULD BE INSERTED HERE
       // (Since ChatGPT messages have size limits, splitting is required; see below note)
 
@@ -169,558 +183,1618 @@
       // STRING 3 (You never provided String 3 → blank)
       // ---------------------------------
       const str3 = `@echo off\n
-REM ---------------------------------------------------------\n
-REM PRACTICAL 3 - WINDOWS VERSION\n
-REM Assumes Hadoop and Java are already installed and configured\n
-REM ---------------------------------------------------------\n
-\n
-REM 1. Create input text file\n
-echo hello hadoop hello colab hadoop mapreduce wordcount > input.txt\n
-\n
-REM 2. Clean up previous output if it exists (Hadoop fails if output folder exists)\n
-rmdir /s /q output 2>nul\n
-\n
-REM 3. Run Hadoop Wordcount\n
-REM Ensure this path matches where you extracted Hadoop\n
-set HADOOP_JAR=C:\\hadoop-3.3.6\\share\\hadoop\\mapreduce\\hadoop-mapreduce-examples-3.3.6.jar\n
-\n
-echo Running MapReduce Job...\n
-hadoop jar "%HADOOP_JAR%" wordcount input.txt output\n
-\n
-REM 4. View results\n
-echo.\n
-echo === RESULTS ===\n
-type output\\part-r-00000\n
-pause\n`;
+                  REM ---------------------------------------------------------\n
+                  REM PRACTICAL 3 - WINDOWS VERSION\n
+                  REM Assumes Hadoop and Java are already installed and configured\n
+                  REM ---------------------------------------------------------\n
+                  \n
+                  REM 1. Create input text file\n
+                  echo hello hadoop hello colab hadoop mapreduce wordcount > input.txt\n
+                  \n
+                  REM 2. Clean up previous output if it exists (Hadoop fails if output folder exists)\n
+                  rmdir /s /q output 2>nul\n
+                  \n
+                  REM 3. Run Hadoop Wordcount\n
+                  REM Ensure this path matches where you extracted Hadoop\n
+                  set HADOOP_JAR=C:\\hadoop-3.3.6\\share\\hadoop\\mapreduce\\hadoop-mapreduce-examples-3.3.6.jar\n
+                  \n
+                  echo Running MapReduce Job...\n
+                  hadoop jar "%HADOOP_JAR%" wordcount input.txt output\n
+                  \n
+                  REM 4. View results\n
+                  echo.\n
+                  echo === RESULTS ===\n
+                  type output\\part-r-00000\n
+                  pause\n`;
 
       // ---------------------------------
       // STRING 4
       // ---------------------------------
       const str4 = `import pandas as pd\n
-    import os\n
-    \n
-    # ---------------------------------------------------------\n
-    # SETUP: Define the file path\n
-    # ---------------------------------------------------------\n
-    # In Jupyter Lab, if the CSV is in the same folder as this notebook,\n
-    # just use the filename. If it's in a subfolder, use 'data/weatherHistory.csv'\n
-    file_path = 'weatherHistory.csv'\n
-    \n
-    # ---------------------------------------------------------\n
-    # MAIN ANALYSIS CODE\n
-    # ---------------------------------------------------------\n
-    try:\n
-        # 1. Load the data\n
-        # We use on_bad_lines='skip' to avoid crashing if a row is malformed\n
-        if not os.path.exists(file_path):\n
-            raise FileNotFoundError(f"File not found at: {os.path.abspath(file_path)}")\n
-    \n
-        df = pd.read_csv(file_path, on_bad_lines='skip')\n
-        print("Data loaded successfully.")\n
-    \n
-        # 2. Clean and Parse Dates\n
-        # Convert 'Formatted Date' to datetime objects\n
-        # 'coerce' turns unparseable dates into NaT (Not a Time) so we can drop them\n
-        df['Formatted Date'] = pd.to_datetime(df['Formatted Date'], \n
-                                            format='%Y-%m-%d %H:%M:%S.%f %z', \n
-                                            errors='coerce', \n
-                                            utc=True)\n
-    \n
-        # Drop rows where dates couldn't be parsed\n
-        df.dropna(subset=['Formatted Date'], inplace=True)\n
-    \n
-        if not df.empty:\n
-            # 3. Filter for the year 2013\n
-            df['Year'] = df['Formatted Date'].dt.year\n
-            df_2013 = df[df['Year'] == 2013].copy()\n
-            \n
-            if not df_2013.empty:\n
-                print(f"Data filtered for 2013 ({len(df_2013)} rows found).")\n
-                \n
-                # 4. Identify Snowfall Events\n
-                # Filter for rows where 'Precip Type' is 'snow'\n
-                snow_df_2013 = df_2013[df_2013['Precip Type'] == 'snow'].copy()\n
-    \n
-                if not snow_df_2013.empty:\n
-                    # 5. Clean Apparent Temperature\n
-                    # Convert column to numeric to ensure we can find the minimum\n
-                    snow_df_2013['Apparent Temperature (C)'] = pd.to_numeric(\n
-                        snow_df_2013['Apparent Temperature (C)'], \n
-                        errors='coerce'\n
-                    )\n
-                    \n
-                    # Drop any rows where temperature became NaN\n
-                    snow_df_2013.dropna(subset=['Apparent Temperature (C)'], inplace=True)\n
-    \n
-                    if not snow_df_2013.empty:\n
-                        # 6. Find the maximum snowfall proxy\n
-                        # (Finding the row with the lowest Apparent Temperature during snow)\n
-                        min_temp_idx = snow_df_2013['Apparent Temperature (C)'].idxmin()\n
-                        max_snow_row = snow_df_2013.loc[min_temp_idx]\n
-    \n
-                        # 7. Display Results\n
-                        print("\\n--- Row indicating likely maximum snowfall (coldest snow day) in 2013 ---")\n
-                        display(max_snow_row) # 'display()' works natively in Jupyter Lab\n
-    \n
-                        # Extract specific details\n
-                        max_snow_day = max_snow_row['Formatted Date']\n
-                        max_snow_station = "Station information not available in dataset"\n
-    \n
-                        print(f"\\nThe day with the likely maximum snowfall in 2013 was {max_snow_day}")\n
-                        print(f"Location/Station: {max_snow_station}")\n
-    \n
-                    else:\n
-                        print("\\nError: No valid temperature data found for snowfall events in 2013.")\n
-                else:\n
-                    print("\\nNo 'snow' records found for the year 2013.")\n
-            else:\n
-                print("\\nNo data found for the year 2013.")\n
-        else:\n
-            print("\\nDataFrame is empty after date processing.")\n
-    \n
-    except FileNotFoundError as fnf_error:\n
-        print(f"ERROR: {fnf_error}")\n
-        print("Action: Please move 'weatherHistory.csv' into the same folder as this notebook.")\n
-    except Exception as e:\n
-        print(f"An unexpected error occurred: {e}")\n`; // FULL STRING 4 (very long), same as you provided
+                      import os\n
+                      \n
+                      # ---------------------------------------------------------\n
+                      # SETUP: Define the file path\n
+                      # ---------------------------------------------------------\n
+                      # In Jupyter Lab, if the CSV is in the same folder as this notebook,\n
+                      # just use the filename. If it's in a subfolder, use 'data/weatherHistory.csv'\n
+                      file_path = 'weatherHistory.csv'\n
+                      \n
+                      # ---------------------------------------------------------\n
+                      # MAIN ANALYSIS CODE\n
+                      # ---------------------------------------------------------\n
+                      try:\n
+                          # 1. Load the data\n
+                          # We use on_bad_lines='skip' to avoid crashing if a row is malformed\n
+                          if not os.path.exists(file_path):\n
+                              raise FileNotFoundError(f"File not found at: {os.path.abspath(file_path)}")\n
+                      \n
+                          df = pd.read_csv(file_path, on_bad_lines='skip')\n
+                          print("Data loaded successfully.")\n
+                      \n
+                          # 2. Clean and Parse Dates\n
+                          # Convert 'Formatted Date' to datetime objects\n
+                          # 'coerce' turns unparseable dates into NaT (Not a Time) so we can drop them\n
+                          df['Formatted Date'] = pd.to_datetime(df['Formatted Date'], \n
+                                                              format='%Y-%m-%d %H:%M:%S.%f %z', \n
+                                                              errors='coerce', \n
+                                                              utc=True)\n
+                      \n
+                          # Drop rows where dates couldn't be parsed\n
+                          df.dropna(subset=['Formatted Date'], inplace=True)\n
+                      \n
+                          if not df.empty:\n
+                              # 3. Filter for the year 2013\n
+                              df['Year'] = df['Formatted Date'].dt.year\n
+                              df_2013 = df[df['Year'] == 2013].copy()\n
+                              \n
+                              if not df_2013.empty:\n
+                                  print(f"Data filtered for 2013 ({len(df_2013)} rows found).")\n
+                                  \n
+                                  # 4. Identify Snowfall Events\n
+                                  # Filter for rows where 'Precip Type' is 'snow'\n
+                                  snow_df_2013 = df_2013[df_2013['Precip Type'] == 'snow'].copy()\n
+                      \n
+                                  if not snow_df_2013.empty:\n
+                                      # 5. Clean Apparent Temperature\n
+                                      # Convert column to numeric to ensure we can find the minimum\n
+                                      snow_df_2013['Apparent Temperature (C)'] = pd.to_numeric(\n
+                                          snow_df_2013['Apparent Temperature (C)'], \n
+                                          errors='coerce'\n
+                                      )\n
+                                      \n
+                                      # Drop any rows where temperature became NaN\n
+                                      snow_df_2013.dropna(subset=['Apparent Temperature (C)'], inplace=True)\n
+                      \n
+                                      if not snow_df_2013.empty:\n
+                                          # 6. Find the maximum snowfall proxy\n
+                                          # (Finding the row with the lowest Apparent Temperature during snow)\n
+                                          min_temp_idx = snow_df_2013['Apparent Temperature (C)'].idxmin()\n
+                                          max_snow_row = snow_df_2013.loc[min_temp_idx]\n
+                      \n
+                                          # 7. Display Results\n
+                                          print("\\n--- Row indicating likely maximum snowfall (coldest snow day) in 2013 ---")\n
+                                          display(max_snow_row) # 'display()' works natively in Jupyter Lab\n
+                      \n
+                                          # Extract specific details\n
+                                          max_snow_day = max_snow_row['Formatted Date']\n
+                                          max_snow_station = "Station information not available in dataset"\n
+                      \n
+                                          print(f"\\nThe day with the likely maximum snowfall in 2013 was {max_snow_day}")\n
+                                          print(f"Location/Station: {max_snow_station}")\n
+                      \n
+                                      else:\n
+                                          print("\\nError: No valid temperature data found for snowfall events in 2013.")\n
+                                  else:\n
+                                      print("\\nNo 'snow' records found for the year 2013.")\n
+                              else:\n
+                                  print("\\nNo data found for the year 2013.")\n
+                          else:\n
+                              print("\\nDataFrame is empty after date processing.")\n
+                      \n
+                      except FileNotFoundError as fnf_error:\n
+                          print(f"ERROR: {fnf_error}")\n
+                          print("Action: Please move 'weatherHistory.csv' into the same folder as this notebook.")\n
+                      except Exception as e:\n
+                          print(f"An unexpected error occurred: {e}")\n`; // FULL STRING 4 (very long), same as you provided
 
       // ---------------------------------
       // STRING 5
       // ---------------------------------
       const str5 = `import csv\n
-    from collections import defaultdict\n
-    \n
-    # ---------------------------------------------------------\n
-    # SETUP: Define the correct file path\n
-    # ---------------------------------------------------------\n
-    # Based on your screenshot, the file is inside the 'ml-latest-small' folder\n
-    file_path = 'ml-latest-small/ratings.csv' \n
-    \n
-    # ---------------------------------------------------------\n
-    # MAP REDUCE LOGIC\n
-    # ---------------------------------------------------------\n
-    def mapper(line):\n
-        """\n
-        Parses a line from ratings.csv.\n
-        Format: userId,movieId,rating,timestamp\n
-        """\n
-        try:\n
-            parts = line.split(',')\n
-            movie_id = parts[1].strip()      # movieId is the 2nd column\n
-            rating = float(parts[2].strip()) # rating is the 3rd column\n
-            yield (movie_id, rating)\n
-        except (IndexError, ValueError):\n
-            pass  # Skip headers or empty lines\n
-    \n
-    def reducer(movie_id, ratings_list):\n
-        """\n
-        Calculates average rating for a movie.\n
-        """\n
-        if not ratings_list:\n
-            return\n
-        avg = sum(ratings_list) / len(ratings_list)\n
-        yield (movie_id, avg)\n
-    \n
-    # ---------------------------------------------------------\n
-    # MAIN EXECUTION\n
-    # ---------------------------------------------------------\n
-    try:\n
-        print(f"Attempting to read file from: {file_path}")\n
-        \n
-        # 1. READ DATA\n
-        ratings_data = []\n
-        with open(file_path, 'r', encoding='utf-8') as f:\n
-            next(f) # Skip header row\n
-            for line in f:\n
-                ratings_data.append(line.strip())\n
-                \n
-        print(f"Success! Loaded {len(ratings_data)} ratings.")\n
-    \n
-        # 2. MAP PHASE\n
-        mapped_data = []\n
-        for line in ratings_data:\n
-            for movie_id, rating in mapper(line):\n
-                mapped_data.append((movie_id, rating))\n
-    \n
-        # 3. SHUFFLE/GROUP PHASE\n
-        grouped_ratings = defaultdict(list)\n
-        for movie_id, rating in mapped_data:\n
-            grouped_ratings[movie_id].append(rating)\n
-    \n
-        # 4. REDUCE PHASE\n
-        average_ratings = {}\n
-        for movie_id, ratings_list in grouped_ratings.items():\n
-            for movie, avg_rating in reducer(movie_id, ratings_list):\n
-                average_ratings[movie] = avg_rating\n
-    \n
-        # 5. PRINT RESULTS (Top 10)\n
-        print("\\n--- Top 10 Movies by Average Rating (Sample) ---")\n
-        sorted_movies = sorted(average_ratings.items(), key=lambda x: x[1], reverse=True)\n
-        \n
-        for movie, avg in sorted_movies[:10]:\n
-            print(f"Movie ID {movie}: Average Rating = {avg:.2f}")\n
-    \n
-    except FileNotFoundError:\n
-        print("\\nERROR: File still not found.")\n
-        print(f"The code looked for: {file_path}")\n
-        print("Action: Please move your .ipynb notebook file INTO the 'ml-latest-small' folder and try again.")\n`;
+                      from collections import defaultdict\n
+                      \n
+                      # ---------------------------------------------------------\n
+                      # SETUP: Define the correct file path\n
+                      # ---------------------------------------------------------\n
+                      # Based on your screenshot, the file is inside the 'ml-latest-small' folder\n
+                      file_path = 'ml-latest-small/ratings.csv' \n
+                      \n
+                      # ---------------------------------------------------------\n
+                      # MAP REDUCE LOGIC\n
+                      # ---------------------------------------------------------\n
+                      def mapper(line):\n
+                          """\n
+                          Parses a line from ratings.csv.\n
+                          Format: userId,movieId,rating,timestamp\n
+                          """\n
+                          try:\n
+                              parts = line.split(',')\n
+                              movie_id = parts[1].strip()      # movieId is the 2nd column\n
+                              rating = float(parts[2].strip()) # rating is the 3rd column\n
+                              yield (movie_id, rating)\n
+                          except (IndexError, ValueError):\n
+                              pass  # Skip headers or empty lines\n
+                      \n
+                      def reducer(movie_id, ratings_list):\n
+                          """\n
+                          Calculates average rating for a movie.\n
+                          """\n
+                          if not ratings_list:\n
+                              return\n
+                          avg = sum(ratings_list) / len(ratings_list)\n
+                          yield (movie_id, avg)\n
+                      \n
+                      # ---------------------------------------------------------\n
+                      # MAIN EXECUTION\n
+                      # ---------------------------------------------------------\n
+                      try:\n
+                          print(f"Attempting to read file from: {file_path}")\n
+                          \n
+                          # 1. READ DATA\n
+                          ratings_data = []\n
+                          with open(file_path, 'r', encoding='utf-8') as f:\n
+                              next(f) # Skip header row\n
+                              for line in f:\n
+                                  ratings_data.append(line.strip())\n
+                                  \n
+                          print(f"Success! Loaded {len(ratings_data)} ratings.")\n
+                      \n
+                          # 2. MAP PHASE\n
+                          mapped_data = []\n
+                          for line in ratings_data:\n
+                              for movie_id, rating in mapper(line):\n
+                                  mapped_data.append((movie_id, rating))\n
+                      \n
+                          # 3. SHUFFLE/GROUP PHASE\n
+                          grouped_ratings = defaultdict(list)\n
+                          for movie_id, rating in mapped_data:\n
+                              grouped_ratings[movie_id].append(rating)\n
+                      \n
+                          # 4. REDUCE PHASE\n
+                          average_ratings = {}\n
+                          for movie_id, ratings_list in grouped_ratings.items():\n
+                              for movie, avg_rating in reducer(movie_id, ratings_list):\n
+                                  average_ratings[movie] = avg_rating\n
+                      \n
+                          # 5. PRINT RESULTS (Top 10)\n
+                          print("\\n--- Top 10 Movies by Average Rating (Sample) ---")\n
+                          sorted_movies = sorted(average_ratings.items(), key=lambda x: x[1], reverse=True)\n
+                          \n
+                          for movie, avg in sorted_movies[:10]:\n
+                              print(f"Movie ID {movie}: Average Rating = {avg:.2f}")\n
+                      \n
+                      except FileNotFoundError:\n
+                          print("\\nERROR: File still not found.")\n
+                          print(f"The code looked for: {file_path}")\n
+                          print("Action: Please move your .ipynb notebook file INTO the 'ml-latest-small' folder and try again.")\n`;
 
       // ---------------------------------
       // STRING 6
       // ---------------------------------
       const str6 = `
-    ${str5}
-    `; // You provided same string again → reuse
+                      ${str5}
+                      `; // You provided same string again → reuse
 
       // ---------------------------------
       // STRING 7 (You never provided String 7)
       // ---------------------------------
       const str7 = `!pip install cufflinks --upgrade\n
-\n
-\n
-# importing required libraries\n
-import numpy as np\n
-from sklearn.linear_model import LinearRegression\n
-from sklearn.metrics import mean_squared_error\n
-import numpy as np # linear algebra\n
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)\n
-import matplotlib.pyplot as plt\n
-import seaborn as sns\n
-from plotly.offline import init_notebook_mode, download_plotlyjs, iplot\n
-import cufflinks as cf\n
-init_notebook_mode(connected=True)\n
-cf.go_offline()\n
-import warnings\n
-warnings.filterwarnings('ignore')\n
-\n
-\n
-#Importing the datasets\n
-train_data = pd.read_csv(r'./train.csv')\n
-test_data = pd.read_csv(r'./test.csv')\n
-\n
-\n
-train_data.head()\n
-\n
-\n
-test_data.head()\n
-\n
-train_data.head()\n
-# shape of the dataset\n
-print('\\nShape of training data :',train_data.shape)\n
-print('\\nShape of testing data :',test_data.shape)\n
-\n
-\n
-#Removing Unwanted Columns/Features\n
-try:\n
-    train_data.drop(labels=['Item_Identifier', 'Outlet_Identifier', 'Outlet_Establishment_Year'], axis=1, inplace=True)\n
-    test_data.drop(labels=['Item_Identifier', 'Outlet_Identifier', 'Outlet_Establishment_Year'], axis=1, inplace=True)\n
-except Exception as e:\n
-    pass\n
-\n
-\n
-train_data.head()\n
-# shape of the dataset\n
-print('\\nShape of training data :',train_data.shape)\n
-print('\\nShape of testing data :',test_data.shape)\n
-\n
-\n
-#visualising categorical variables\n
-categorial_features = train_data.select_dtypes(include=[object])\n
-categorial_features.head(2)\n
-\n
-\n
-#visualising numerical variables\n
-numerical_features = train_data.select_dtypes(include=[np.number])\n
-numerical_features.head(2)\n
-\n
-\n
-# Replacing the duplicates with its original categories\n
-# Making Correction in 'Item_Fat_Content' column\n
-train_data["Item_Fat_Content"] = train_data["Item_Fat_Content"].str.replace("reg","Regular")\n
-train_data["Item_Fat_Content"] = train_data["Item_Fat_Content"].str.replace("LF","Low Fat")\n
-train_data["Item_Fat_Content"] = train_data["Item_Fat_Content"].str.replace("low fat","Low Fat")\n
-train_data["Item_Fat_Content"].unique()\n
-\n
-\n
-#visualising categorical variables\n
-temp_df = train_data.isnull().sum().reset_index()\n
-temp_df['Percentage'] = (temp_df[0]/len(train_data))*100\n
-temp_df.columns = ['Column Name', 'Number of null values', 'Null values in percentage']\n
-print(f"The length of dataset is \\t {len(train_data)}")\n
-temp_df\n
-\n
-!pip install missingpy\n
-\n
-# Imputing the nan values using Knn Imputer for Item_Weight Column\n
-from sklearn.impute import KNNImputer\n
-# from missingpy import KNNImputer\n
-kn= KNNImputer(weights='distance')\n
-new_weight= kn.fit_transform(train_data["Item_Weight"].values.reshape(-1,1))\n
-train_data["Item_Weight"]=new_weight\n
-\n
-\n
-# Substituting the missing values with mean for Item_Weight Column\n
-train_data["Item_Weight"]=train_data["Item_Weight"].fillna(np.mean(train_data["Item_Weight"]))\n
-\n
-\n
-#Imputing nan values using fillna "backwordFill" method and analysing the nature of Item_Outlet_Sales after Imputation.\n
-train_data["Outlet_Size"]=train_data["Outlet_Size"].fillna(method="bfill")\n
-train_data.pivot_table(index="Outlet_Size",values="Item_Outlet_Sales")\n
-\n
-\n
-import plotly.express as px\n
-\n
-count = train_data['Outlet_Size'].value_counts().reset_index()\n
-count.columns = ['Size', 'Frequency']\n
-\n
-fig = px.bar(count,\n
-             x='Size',\n
-             y='Frequency',\n
-             title='High VS Medium VS Small',\n
-             color_discrete_sequence=['deepskyblue'])\n
-fig.update_layout(xaxis_title='Size', yaxis_title='Frequency')\n
-fig.show()\n
-\n
-\n
-train_data['Outlet_Size'].fillna(value='Medium', inplace= True)\n
-test_data['Outlet_Size'].fillna(value='Medium', inplace= True)\n
-\n
-# Let us Import the Important Libraries  to train our Model for Machine Learning \n
-from sklearn.linear_model import LinearRegression\n
-from sklearn.ensemble import RandomForestRegressor\n
-\n
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder # To deal with Categorical Data in Target Vector.\n
-from sklearn.model_selection import train_test_split  # To Split the dataset into training data and testing data.\n
-from sklearn.model_selection import cross_val_score   # To check the accuracy of the model.\n
-from sklearn.impute  import SimpleImputer   # To deal with the missing values\n
-from sklearn.preprocessing import StandardScaler   # To appy scaling on the dataset.\n
-\n
-\n
-# Let us create feature matrix and Target Vector.\n
-x_train = train_data.iloc[:, :-1].values    # Features Matrix\n
-y_train = train_data.iloc[:,-1].values   # Target Vector\n
-x_test = test_data.values    # Features Matrix\n
-\n
-#Dealing with Missing data\n
-imputer = SimpleImputer()\n
-x_train[:,[0]] = imputer.fit_transform(x_train[:,[0]])\n
-x_test[:,[0]] = imputer.fit_transform(x_test[:,[0]])\n
-\n
-\n
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder\n
-from sklearn.compose import ColumnTransformer\n
-\n
-# ----------------------------\n
-# Dealing With the Categorical Values in Features/Columns\n
-# ----------------------------\n
-labelencoder_x = LabelEncoder()\n
-\n
-# Label encode train set\n
-x_train[:, 1] = labelencoder_x.fit_transform(x_train[:, 1])\n
-x_train[:, 3] = labelencoder_x.fit_transform(x_train[:, 3])\n
-x_train[:, 5] = labelencoder_x.fit_transform(x_train[:, 5])\n
-x_train[:, 6] = labelencoder_x.fit_transform(x_train[:, 6])\n
-x_train[:, 7] = labelencoder_x.fit_transform(x_train[:, 7])\n
-\n
-# Encode target\n
-y = labelencoder_x.fit_transform(y_train)\n
-\n
-# One-hot encoding for more than 2 categories (updated for latest sklearn)\n
-onehotencoder_x = ColumnTransformer(\n
-    transformers=[('onehot', OneHotEncoder(), [3, 5, 6, 7])],\n
-    remainder='passthrough'\n
-)\n
-x_train = onehotencoder_x.fit_transform(x_train)\n
-\n
-# ----------------------------\n
-# Apply same concept on test set\n
-# ----------------------------\n
-x_test[:, 1] = labelencoder_x.fit_transform(x_test[:, 1])\n
-x_test[:, 3] = labelencoder_x.fit_transform(x_test[:, 3])\n
-x_test[:, 5] = labelencoder_x.fit_transform(x_test[:, 5])\n
-x_test[:, 6] = labelencoder_x.fit_transform(x_test[:, 6])\n
-x_test[:, 7] = labelencoder_x.fit_transform(x_test[:, 7])\n
-x_test = onehotencoder_x.transform(x_test)\n
-\n
-\n
-from sklearn.preprocessing import StandardScaler\n
-sc_X = StandardScaler()\n
-x_train = sc_X.fit_transform(x_train.toarray())  # convert sparse to dense\n
-x_test = sc_X.transform(x_test.toarray())\n
-\n
-\n
-\n
-from sklearn.decomposition import PCA\n
-pca = PCA(n_components=None)\n
-x_train = pca.fit_transform(x_train)\n
-x_test = pca.fit_transform(x_test)\n
-explained_variance = pca.explained_variance_ratio_\n
-explained_variance\n
-\n
-pca = PCA(n_components=25)\n
-x_train = pca.fit_transform(x_train)\n
-x_test = pca.fit_transform(x_test)\n
-\n
-\n
-# Multi-linear regression Model.\n
-regressor_multi = LinearRegression()\n
-regressor_multi.fit(x_train,y)\n
-\n
-# Let us check the accuray\n
-accuracy = cross_val_score(estimator=regressor_multi, X=x_train, y=y,cv=10)\n
-print(f"The accuracy of the Multi-linear Regressor Model is \\t {accuracy.mean()}")\n
-print(f"The deviation in the accuracy is \\t {accuracy.std()}")\n
-\n
-\n
-# Fitting polynomial regression to dataset\n
-from sklearn.preprocessing import PolynomialFeatures\n
-poly_reg=PolynomialFeatures(degree=4) #These 3 steps are to convert X matrix into X polynomial\n
-x_poly=poly_reg.fit_transform(x_train) #matrix. \n
-regressor_poly=LinearRegression()\n
-regressor_poly.fit(x_poly,y)\n
-\n
-# Let us check the accuray\n
-accuracy = cross_val_score(estimator=regressor_poly, X=x_train, y=y,cv=10)\n
-print(f"The accuracy of the Polynomial Regression Model is \\t {accuracy.mean()}")\n
-print(f"The deviation in the accuracy is \\t {accuracy.std()}")\n
-\n
-\n
-!pip install xgboost\n
-\n
-#Import Gaussian Naive Bayes model\n
-from sklearn.naive_bayes import GaussianNB\n
-\n
-#Create a Gaussian Classifier\n
-model1 = GaussianNB()\n
-\n
-# Train the model using the training sets\n
-model1.fit(x_train, y)\n
-accuracy = cross_val_score(estimator=model1, X=x_train, y=y, cv=10)\n
-print(f"The accuracy of the Gaussian Naive Bayes Model is \\t {accuracy.mean()}") \n
-print(f"The deviation in the accuracy is \\t {accuracy.std()}")\n
-\n
-\n
-y_pred = regressor_multi.predict(x_test)\n
-y_pred[:5]\n
-\n`;
+                  \n
+                  \n
+                  # importing required libraries\n
+                  import numpy as np\n
+                  from sklearn.linear_model import LinearRegression\n
+                  from sklearn.metrics import mean_squared_error\n
+                  import numpy as np # linear algebra\n
+                  import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)\n
+                  import matplotlib.pyplot as plt\n
+                  import seaborn as sns\n
+                  from plotly.offline import init_notebook_mode, download_plotlyjs, iplot\n
+                  import cufflinks as cf\n
+                  init_notebook_mode(connected=True)\n
+                  cf.go_offline()\n
+                  import warnings\n
+                  warnings.filterwarnings('ignore')\n
+                  \n
+                  \n
+                  #Importing the datasets\n
+                  train_data = pd.read_csv(r'./train.csv')\n
+                  test_data = pd.read_csv(r'./test.csv')\n
+                  \n
+                  \n
+                  train_data.head()\n
+                  \n
+                  \n
+                  test_data.head()\n
+                  \n
+                  train_data.head()\n
+                  # shape of the dataset\n
+                  print('\\nShape of training data :',train_data.shape)\n
+                  print('\\nShape of testing data :',test_data.shape)\n
+                  \n
+                  \n
+                  #Removing Unwanted Columns/Features\n
+                  try:\n
+                      train_data.drop(labels=['Item_Identifier', 'Outlet_Identifier', 'Outlet_Establishment_Year'], axis=1, inplace=True)\n
+                      test_data.drop(labels=['Item_Identifier', 'Outlet_Identifier', 'Outlet_Establishment_Year'], axis=1, inplace=True)\n
+                  except Exception as e:\n
+                      pass\n
+                  \n
+                  \n
+                  train_data.head()\n
+                  # shape of the dataset\n
+                  print('\\nShape of training data :',train_data.shape)\n
+                  print('\\nShape of testing data :',test_data.shape)\n
+                  \n
+                  \n
+                  #visualising categorical variables\n
+                  categorial_features = train_data.select_dtypes(include=[object])\n
+                  categorial_features.head(2)\n
+                  \n
+                  \n
+                  #visualising numerical variables\n
+                  numerical_features = train_data.select_dtypes(include=[np.number])\n
+                  numerical_features.head(2)\n
+                  \n
+                  \n
+                  # Replacing the duplicates with its original categories\n
+                  # Making Correction in 'Item_Fat_Content' column\n
+                  train_data["Item_Fat_Content"] = train_data["Item_Fat_Content"].str.replace("reg","Regular")\n
+                  train_data["Item_Fat_Content"] = train_data["Item_Fat_Content"].str.replace("LF","Low Fat")\n
+                  train_data["Item_Fat_Content"] = train_data["Item_Fat_Content"].str.replace("low fat","Low Fat")\n
+                  train_data["Item_Fat_Content"].unique()\n
+                  \n
+                  \n
+                  #visualising categorical variables\n
+                  temp_df = train_data.isnull().sum().reset_index()\n
+                  temp_df['Percentage'] = (temp_df[0]/len(train_data))*100\n
+                  temp_df.columns = ['Column Name', 'Number of null values', 'Null values in percentage']\n
+                  print(f"The length of dataset is \\t {len(train_data)}")\n
+                  temp_df\n
+                  \n
+                  !pip install missingpy\n
+                  \n
+                  # Imputing the nan values using Knn Imputer for Item_Weight Column\n
+                  from sklearn.impute import KNNImputer\n
+                  # from missingpy import KNNImputer\n
+                  kn= KNNImputer(weights='distance')\n
+                  new_weight= kn.fit_transform(train_data["Item_Weight"].values.reshape(-1,1))\n
+                  train_data["Item_Weight"]=new_weight\n
+                  \n
+                  \n
+                  # Substituting the missing values with mean for Item_Weight Column\n
+                  train_data["Item_Weight"]=train_data["Item_Weight"].fillna(np.mean(train_data["Item_Weight"]))\n
+                  \n
+                  \n
+                  #Imputing nan values using fillna "backwordFill" method and analysing the nature of Item_Outlet_Sales after Imputation.\n
+                  train_data["Outlet_Size"]=train_data["Outlet_Size"].fillna(method="bfill")\n
+                  train_data.pivot_table(index="Outlet_Size",values="Item_Outlet_Sales")\n
+                  \n
+                  \n
+                  import plotly.express as px\n
+                  \n
+                  count = train_data['Outlet_Size'].value_counts().reset_index()\n
+                  count.columns = ['Size', 'Frequency']\n
+                  \n
+                  fig = px.bar(count,\n
+                               x='Size',\n
+                               y='Frequency',\n
+                               title='High VS Medium VS Small',\n
+                               color_discrete_sequence=['deepskyblue'])\n
+                  fig.update_layout(xaxis_title='Size', yaxis_title='Frequency')\n
+                  fig.show()\n
+                  \n
+                  \n
+                  train_data['Outlet_Size'].fillna(value='Medium', inplace= True)\n
+                  test_data['Outlet_Size'].fillna(value='Medium', inplace= True)\n
+                  \n
+                  # Let us Import the Important Libraries  to train our Model for Machine Learning \n
+                  from sklearn.linear_model import LinearRegression\n
+                  from sklearn.ensemble import RandomForestRegressor\n
+                  \n
+                  from sklearn.preprocessing import LabelEncoder, OneHotEncoder # To deal with Categorical Data in Target Vector.\n
+                  from sklearn.model_selection import train_test_split  # To Split the dataset into training data and testing data.\n
+                  from sklearn.model_selection import cross_val_score   # To check the accuracy of the model.\n
+                  from sklearn.impute  import SimpleImputer   # To deal with the missing values\n
+                  from sklearn.preprocessing import StandardScaler   # To appy scaling on the dataset.\n
+                  \n
+                  \n
+                  # Let us create feature matrix and Target Vector.\n
+                  x_train = train_data.iloc[:, :-1].values    # Features Matrix\n
+                  y_train = train_data.iloc[:,-1].values   # Target Vector\n
+                  x_test = test_data.values    # Features Matrix\n
+                  \n
+                  #Dealing with Missing data\n
+                  imputer = SimpleImputer()\n
+                  x_train[:,[0]] = imputer.fit_transform(x_train[:,[0]])\n
+                  x_test[:,[0]] = imputer.fit_transform(x_test[:,[0]])\n
+                  \n
+                  \n
+                  from sklearn.preprocessing import LabelEncoder, OneHotEncoder\n
+                  from sklearn.compose import ColumnTransformer\n
+                  \n
+                  # ----------------------------\n
+                  # Dealing With the Categorical Values in Features/Columns\n
+                  # ----------------------------\n
+                  labelencoder_x = LabelEncoder()\n
+                  \n
+                  # Label encode train set\n
+                  x_train[:, 1] = labelencoder_x.fit_transform(x_train[:, 1])\n
+                  x_train[:, 3] = labelencoder_x.fit_transform(x_train[:, 3])\n
+                  x_train[:, 5] = labelencoder_x.fit_transform(x_train[:, 5])\n
+                  x_train[:, 6] = labelencoder_x.fit_transform(x_train[:, 6])\n
+                  x_train[:, 7] = labelencoder_x.fit_transform(x_train[:, 7])\n
+                  \n
+                  # Encode target\n
+                  y = labelencoder_x.fit_transform(y_train)\n
+                  \n
+                  # One-hot encoding for more than 2 categories (updated for latest sklearn)\n
+                  onehotencoder_x = ColumnTransformer(\n
+                      transformers=[('onehot', OneHotEncoder(), [3, 5, 6, 7])],\n
+                      remainder='passthrough'\n
+                  )\n
+                  x_train = onehotencoder_x.fit_transform(x_train)\n
+                  \n
+                  # ----------------------------\n
+                  # Apply same concept on test set\n
+                  # ----------------------------\n
+                  x_test[:, 1] = labelencoder_x.fit_transform(x_test[:, 1])\n
+                  x_test[:, 3] = labelencoder_x.fit_transform(x_test[:, 3])\n
+                  x_test[:, 5] = labelencoder_x.fit_transform(x_test[:, 5])\n
+                  x_test[:, 6] = labelencoder_x.fit_transform(x_test[:, 6])\n
+                  x_test[:, 7] = labelencoder_x.fit_transform(x_test[:, 7])\n
+                  x_test = onehotencoder_x.transform(x_test)\n
+                  \n
+                  \n
+                  from sklearn.preprocessing import StandardScaler\n
+                  sc_X = StandardScaler()\n
+                  x_train = sc_X.fit_transform(x_train.toarray())  # convert sparse to dense\n
+                  x_test = sc_X.transform(x_test.toarray())\n
+                  \n
+                  \n
+                  \n
+                  from sklearn.decomposition import PCA\n
+                  pca = PCA(n_components=None)\n
+                  x_train = pca.fit_transform(x_train)\n
+                  x_test = pca.fit_transform(x_test)\n
+                  explained_variance = pca.explained_variance_ratio_\n
+                  explained_variance\n
+                  \n
+                  pca = PCA(n_components=25)\n
+                  x_train = pca.fit_transform(x_train)\n
+                  x_test = pca.fit_transform(x_test)\n
+                  \n
+                  \n
+                  # Multi-linear regression Model.\n
+                  regressor_multi = LinearRegression()\n
+                  regressor_multi.fit(x_train,y)\n
+                  \n
+                  # Let us check the accuray\n
+                  accuracy = cross_val_score(estimator=regressor_multi, X=x_train, y=y,cv=10)\n
+                  print(f"The accuracy of the Multi-linear Regressor Model is \\t {accuracy.mean()}")\n
+                  print(f"The deviation in the accuracy is \\t {accuracy.std()}")\n
+                  \n
+                  \n
+                  # Fitting polynomial regression to dataset\n
+                  from sklearn.preprocessing import PolynomialFeatures\n
+                  poly_reg=PolynomialFeatures(degree=4) #These 3 steps are to convert X matrix into X polynomial\n
+                  x_poly=poly_reg.fit_transform(x_train) #matrix. \n
+                  regressor_poly=LinearRegression()\n
+                  regressor_poly.fit(x_poly,y)\n
+                  \n
+                  # Let us check the accuray\n
+                  accuracy = cross_val_score(estimator=regressor_poly, X=x_train, y=y,cv=10)\n
+                  print(f"The accuracy of the Polynomial Regression Model is \\t {accuracy.mean()}")\n
+                  print(f"The deviation in the accuracy is \\t {accuracy.std()}")\n
+                  \n
+                  \n
+                  !pip install xgboost\n
+                  \n
+                  #Import Gaussian Naive Bayes model\n
+                  from sklearn.naive_bayes import GaussianNB\n
+                  \n
+                  #Create a Gaussian Classifier\n
+                  model1 = GaussianNB()\n
+                  \n
+                  # Train the model using the training sets\n
+                  model1.fit(x_train, y)\n
+                  accuracy = cross_val_score(estimator=model1, X=x_train, y=y, cv=10)\n
+                  print(f"The accuracy of the Gaussian Naive Bayes Model is \\t {accuracy.mean()}") \n
+                  print(f"The deviation in the accuracy is \\t {accuracy.std()}")\n
+                  \n
+                  \n
+                  y_pred = regressor_multi.predict(x_test)\n
+                  y_pred[:5]\n
+                  \n`;
 
       // ---------------------------------
       // STRING 8
       // ---------------------------------
       const str8 = `import pandas as pd\n
-    import numpy as np\n
-    import re\n
-    import nltk\n
-    from nltk.corpus import stopwords\n
-    from nltk.tokenize import word_tokenize\n
-    from sklearn.model_selection import train_test_split\n
-    from sklearn.feature_extraction.text import TfidfVectorizer\n
-    from sklearn.linear_model import LogisticRegression\n
-    from sklearn.metrics import classification_report, accuracy_score\n
-    import matplotlib.pyplot as plt\n
-    import seaborn as sns\n
-    \n
-    # ==========================================\n
-    # 1. SETUP & LOAD DATA\n
-    # ==========================================\n
-    # Make sure 'training.1600000.processed.noemoticon.csv' is in your folder\n
-    filename = 'training.1600000.processed.noemoticon.csv'\n
-    \n
-    try:\n
-        print("Loading dataset... (This might take a moment)")\n
-        # The dataset has no headers, and uses latin-1 encoding\n
-        df = pd.read_csv(filename, encoding='latin-1', header=None)\n
-        \n
-        # Assign standard column names\n
-        df.columns = ['sentiment', 'id', 'date', 'query', 'user', 'tweet_text']\n
-        \n
-        # We only need the target (sentiment) and the text\n
-        df = df[['sentiment', 'tweet_text']]\n
-        \n
-        print(f"Data loaded successfully. Shape: {df.shape}")\n
-        \n
-        # Optional: Use a smaller sample if the dataset is too big for your PC\n
-        # df = df.sample(100000, random_state=42) \n
-    \n
-        # ==========================================\n
-        # 2. PREPROCESSING\n
-        # ==========================================\n
-        # Download NLTK data\n
-        for resource in ['punkt', 'punkt_tab', 'stopwords']:\n
-            try:\n
-                nltk.data.find(f'tokenizers/{resource}')\n
-            except LookupError:\n
-                nltk.download(resource, quiet=True)\n
-    \n
-        stop_words = set(stopwords.words('english'))\n
-    \n
-        def clean_text(text):\n
-            # [cite_start]Remove URLs, mentions, and special characters [cite: 460-468]\n
-            text = re.sub(r'http\\S+|www\\S+|https\\S+', '', text, flags=re.MULTILINE)\n
-            text = re.sub(r'@\\w+', '', text)\n
-            text = re.sub(r'[^A-Za-z0-9 ]+', '', text)\n
-            text = text.lower()\n
-            return text\n
-    \n
-        def tokenize_text(text):\n
-            if not isinstance(text, str): return ""\n
-            tokens = word_tokenize(text)\n
-            # [cite_start]Remove stopwords [cite: 422]\n
-            return " ".join([w for w in tokens if w not in stop_words and w.isalpha()])\n
-    \n
-        print("Cleaning tweets...")\n
-        df['cleaned_text'] = df['tweet_text'].apply(clean_text)\n
-        \n
-        print("Tokenizing... (This is the slowest step)")\n
-        df['final_text'] = df['cleaned_text'].apply(tokenize_text)\n
-    \n
-        # ==========================================\n
-        # 3. VECTORIZATION & SPLITTING\n
-        # ==========================================\n
-        print("Vectorizing data...")\n
-        # [cite_start]TF-IDF Vectorizer (Limit to top 5000 features to save memory) [cite: 354]\n
-        tfidf = TfidfVectorizer(max_features=5000)\n
-        X = tfidf.fit_transform(df['final_text'])\n
-    \n
-        # Map labels: Original dataset uses 0 (Negative) and 4 (Positive)\n
-        # Mapping 4 -> 1 (Hate/Positive class in this practical), 0 -> 0\n
-        y = df['sentiment'].apply(lambda x: 1 if x == 4 else 0)\n
-    \n
-        # [cite_start]Split into train and test sets [cite: 333]\n
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n
-    \n
-        # ==========================================\n
-        # 4. TRAINING & EVALUATION\n
-        # ==========================================\n
-        print("Training Logistic Regression model...")\n
-        model = LogisticRegression(solver='liblinear', random_state=42)\n
-        model.fit(X_train, y_train)\n
-    \n
-        print("\\n--- Results ---")\n
-        y_pred = model.predict(X_test)\n
-        \n
-        acc = accuracy_score(y_test, y_pred)\n
-        print(f"Model Accuracy: {acc:.4f}")\n
-        \n
-        print("\\nClassification Report:")\n
-        print(classification_report(y_test, y_pred, target_names=['Non-Hate (0)', 'Hate (4)']))\n
-    \n
-        # ==========================================\n
-        # 5. VISUALIZATION (Optional)\n
-        # ==========================================\n
-        plt.figure(figsize=(6, 4))\n
-        sns.countplot(x='sentiment', data=df)\n
-        plt.title('Distribution of Sentiment Labels')\n
-        plt.xlabel('Sentiment (0=Negative, 4=Positive)')\n
-        plt.ylabel('Count')\n
-        plt.show()\n
-    \n
-    except FileNotFoundError:\n
-        print(f"Error: Could not find '{filename}'. Please make sure it is in the same folder as this script.")\n
-    except Exception as e:\n
-        print(f"An error occurred: {e}")\n`;
+                      import numpy as np\n
+                      import re\n
+                      import nltk\n
+                      from nltk.corpus import stopwords\n
+                      from nltk.tokenize import word_tokenize\n
+                      from sklearn.model_selection import train_test_split\n
+                      from sklearn.feature_extraction.text import TfidfVectorizer\n
+                      from sklearn.linear_model import LogisticRegression\n
+                      from sklearn.metrics import classification_report, accuracy_score\n
+                      import matplotlib.pyplot as plt\n
+                      import seaborn as sns\n
+                      \n
+                      # ==========================================\n
+                      # 1. SETUP & LOAD DATA\n
+                      # ==========================================\n
+                      # Make sure 'training.1600000.processed.noemoticon.csv' is in your folder\n
+                      filename = 'training.1600000.processed.noemoticon.csv'\n
+                      \n
+                      try:\n
+                          print("Loading dataset... (This might take a moment)")\n
+                          # The dataset has no headers, and uses latin-1 encoding\n
+                          df = pd.read_csv(filename, encoding='latin-1', header=None)\n
+                          \n
+                          # Assign standard column names\n
+                          df.columns = ['sentiment', 'id', 'date', 'query', 'user', 'tweet_text']\n
+                          \n
+                          # We only need the target (sentiment) and the text\n
+                          df = df[['sentiment', 'tweet_text']]\n
+                          \n
+                          print(f"Data loaded successfully. Shape: {df.shape}")\n
+                          \n
+                          # Optional: Use a smaller sample if the dataset is too big for your PC\n
+                          # df = df.sample(100000, random_state=42) \n
+                      \n
+                          # ==========================================\n
+                          # 2. PREPROCESSING\n
+                          # ==========================================\n
+                          # Download NLTK data\n
+                          for resource in ['punkt', 'punkt_tab', 'stopwords']:\n
+                              try:\n
+                                  nltk.data.find(f'tokenizers/{resource}')\n
+                              except LookupError:\n
+                                  nltk.download(resource, quiet=True)\n
+                      \n
+                          stop_words = set(stopwords.words('english'))\n
+                      \n
+                          def clean_text(text):\n
+                              # [cite_start]Remove URLs, mentions, and special characters [cite: 460-468]\n
+                              text = re.sub(r'http\\S+|www\\S+|https\\S+', '', text, flags=re.MULTILINE)\n
+                              text = re.sub(r'@\\w+', '', text)\n
+                              text = re.sub(r'[^A-Za-z0-9 ]+', '', text)\n
+                              text = text.lower()\n
+                              return text\n
+                      \n
+                          def tokenize_text(text):\n
+                              if not isinstance(text, str): return ""\n
+                              tokens = word_tokenize(text)\n
+                              # [cite_start]Remove stopwords [cite: 422]\n
+                              return " ".join([w for w in tokens if w not in stop_words and w.isalpha()])\n
+                      \n
+                          print("Cleaning tweets...")\n
+                          df['cleaned_text'] = df['tweet_text'].apply(clean_text)\n
+                          \n
+                          print("Tokenizing... (This is the slowest step)")\n
+                          df['final_text'] = df['cleaned_text'].apply(tokenize_text)\n
+                      \n
+                          # ==========================================\n
+                          # 3. VECTORIZATION & SPLITTING\n
+                          # ==========================================\n
+                          print("Vectorizing data...")\n
+                          # [cite_start]TF-IDF Vectorizer (Limit to top 5000 features to save memory) [cite: 354]\n
+                          tfidf = TfidfVectorizer(max_features=5000)\n
+                          X = tfidf.fit_transform(df['final_text'])\n
+                      \n
+                          # Map labels: Original dataset uses 0 (Negative) and 4 (Positive)\n
+                          # Mapping 4 -> 1 (Hate/Positive class in this practical), 0 -> 0\n
+                          y = df['sentiment'].apply(lambda x: 1 if x == 4 else 0)\n
+                      \n
+                          # [cite_start]Split into train and test sets [cite: 333]\n
+                          X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n
+                      \n
+                          # ==========================================\n
+                          # 4. TRAINING & EVALUATION\n
+                          # ==========================================\n
+                          print("Training Logistic Regression model...")\n
+                          model = LogisticRegression(solver='liblinear', random_state=42)\n
+                          model.fit(X_train, y_train)\n
+                      \n
+                          print("\\n--- Results ---")\n
+                          y_pred = model.predict(X_test)\n
+                          \n
+                          acc = accuracy_score(y_test, y_pred)\n
+                          print(f"Model Accuracy: {acc:.4f}")\n
+                          \n
+                          print("\\nClassification Report:")\n
+                          print(classification_report(y_test, y_pred, target_names=['Non-Hate (0)', 'Hate (4)']))\n
+                      \n
+                          # ==========================================\n
+                          # 5. VISUALIZATION (Optional)\n
+                          # ==========================================\n
+                          plt.figure(figsize=(6, 4))\n
+                          sns.countplot(x='sentiment', data=df)\n
+                          plt.title('Distribution of Sentiment Labels')\n
+                          plt.xlabel('Sentiment (0=Negative, 4=Positive)')\n
+                          plt.ylabel('Count')\n
+                          plt.show()\n
+                      \n
+                      except FileNotFoundError:\n
+                          print(f"Error: Could not find '{filename}'. Please make sure it is in the same folder as this script.")\n
+                      except Exception as e:\n
+                          print(f"An error occurred: {e}")\n`;
 
       const str9 = `https://chatgpt.com/share/69378ad5-f968-8000-922a-c2648a292859`;
+      const str10 = `from heapq import heappush, heappop\n
+                  from collections import deque\n
+                  import copy\n
+                  WIN_LINES = [\n
+                      (0,1,2), (3,4,5), (6,7,8),  # rows\n
+                      (0,3,6), (1,4,7), (2,5,8),  # cols\n
+                      (0,4,8), (2,4,6)            # diagonals\n
+                  ]\n
+                  def check_winner(board):\n
+                      """Return 'X' or 'O' if someone won, or 'D' for draw, or None for non-terminal."""\n
+                      for a,b,c in WIN_LINES:\n
+                          if board[a] != ' ' and board[a] == board[b] == board[c]:\n
+                              return board[a]\n
+                      if ' ' not in board:\n
+                          return 'D'\n
+                      return None\n
+                  def available_moves(board):\n
+                      return [i for i,cell in enumerate(board) if cell == ' ']\n
+                  def make_move(board, pos, player):\n
+                      lst = list(board)\n
+                      lst[pos] = player\n
+                      return tuple(lst)\n
+                  def board_lines_info(board, player):\n
+                      """Return info for each winning line: (player_marks, opponent_marks, empty_count)"""\n
+                      opp = 'O' if player == 'X' else 'X'\n
+                      info = []\n
+                      for a,b,c in WIN_LINES:\n
+                          marks = [board[a], board[b], board[c]]\n
+                          player_marks = marks.count(player)\n
+                          opp_marks = marks.count(opp)\n
+                          empty = marks.count(' ')\n
+                          info.append((player_marks, opp_marks, empty))\n
+                      return info\n
+                  def heuristic(board, player):\n
+                      """Optimistic heuristic: minimum number of *player moves* needed to complete any line that has no opponent mark.\n
+                         If no such line exists, return a large number.\n
+                      """\n
+                      info = board_lines_info(board, player)\n
+                      best = None\n
+                      for pm, om, empty in info:\n
+                          if om == 0:  # opponent not blocking this line\n
+                              needed = 3 - pm  # how many of player's marks needed to complete\n
+                              if best is None or needed < best:\n
+                                  best = needed\n
+                      if best is None:\n
+                          return 100  # no available winning line (opponent blocks all), pessimistic large h\n
+                      return best\n
+                  def a_star_find_forced_win(start_board, player, max_nodes=200000):\n
+                      """\n
+                      Attempt to find a sequence of plies (moves by both players) that leads \`player\` to a win.\n
+                      Returns a list of (player_to_move, move_pos, resulting_board) representing the path of plies,\n
+                      or None if not found in search limits.\n
+                      """\n
+                      start_turn = 'X' if start_board.count('X') == start_board.count('O') else 'O'  # who's turn\n
+                      # Each node in open set: (f, g, id, board, turn, path)\n
+                      # path: list of (turn, move_pos)\n
+                      counter = 0\n
+                      start_h = heuristic(start_board, player)\n
+                      start_g = 0\n
+                      start_f = start_g + start_h\n
+                      open_heap = []\n
+                      heappush(open_heap, (start_f, start_g, counter, start_board, start_turn, []))\n
+                      closed = set()\n
+                      nodes_explored = 0\n
+                      while open_heap and nodes_explored < max_nodes:\n
+                          f, g, _, board, turn, path = heappop(open_heap)\n
+                          nodes_explored += 1\n
+                          state_id = (board, turn)\n
+                          if state_id in closed:\n
+                              continue\n
+                          closed.add(state_id)\n
+                  \n
+                  \n
+                          winner = check_winner(board)\n
+                          if winner == player:\n
+                              # reconstruct full path of boards\n
+                              full = []\n
+                              cur = start_board\n
+                              for mv_turn, mv_pos in path:\n
+                                  cur = make_move(cur, mv_pos, mv_turn)\n
+                                  full.append((mv_turn, mv_pos, cur))\n
+                              return full  # found sequence leading to player's win\n
+                          if winner is not None:\n
+                              # terminal but not player's win, skip expansion\n
+                              continue\n
+                          # Expand children (all legal moves for \`turn\`)\n
+                          for mv in available_moves(board):\n
+                              new_board = make_move(board, mv, turn)\n
+                              next_turn = 'O' if turn == 'X' else 'X'\n
+                              new_path = path + [(turn, mv)]\n
+                              new_g = g + 1  # one more ply\n
+                              # heuristic always measures distance for \`player\`\n
+                              h = heuristic(new_board, player)\n
+                              new_f = new_g + h\n
+                              counter += 1\n
+                              heappush(open_heap, (new_f, new_g, counter, new_board, next_turn, new_path))\n
+                      # not found within limits\n
+                      return None\n
+                  # Simple helper to pretty-print board\n
+                  def pretty(board):\n
+                      rows = []\n
+                      for i in range(0,9,3):\n
+                          rows.append(' | '.join(board[i:i+3]))\n
+                      return '\\n---------\\n'.join(rows)\n
+                  # Demonstration: try to find a forcing sequence for X on an empty board\n
+                  start = tuple(' ' for _ in range(9))\n
+                  solution = a_star_find_forced_win(start, 'X', max_nodes=100000)\n
+                  print("Explored: A* attempted to find forced win for X from empty board.")\n
+                  if solution is None:\n
+                      print("No forced win found within search limits (expected for optimal opponent play).")\n
+                  else:\n
+                      print("Found a sequence of plies leading to X win:")\n
+                      cur = start\n
+                      print(pretty(cur))\n
+                      for turn, pos, board in solution:\n
+                          print(f"\\nMove: {turn} -> {pos}\\n{pretty(board)}")\n`;
+
+      const str11 = `import heapq\n
+            \n
+            # State: (M_left, C_left, boat_position)\n
+            # boat_position: 'L' left, 'R' right\n
+            START = (3, 3, 'L')\n
+            GOAL = (0, 0, 'R')\n
+            \n
+            # Possible moves: (M_to_move, C_to_move) - boat capacity is 2\n
+            MOVES = [(1, 0), (2, 0), (0, 1), (0, 2), (1, 1)]\n
+            \n
+            def is_valid_state(m_left, c_left):\n
+                """Checks if the state is valid (no missionaries outnumbered by cannibals)."""\n
+                m_right = 3 - m_left\n
+                c_right = 3 - c_left\n
+            \n
+                # Numbers should be within valid range\n
+                if not (0 <= m_left <= 3 and 0 <= c_left <= 3):\n
+                    return False\n
+            \n
+                # Missionaries should not be outnumbered on either side\n
+                # Condition: If there are missionaries, cannibals must not outnumber them.\n
+                if m_left > 0 and c_left > m_left:\n
+                    return False\n
+                if m_right > 0 and c_right > m_right:\n
+                    return False\n
+                \n
+                return True\n
+            \n
+            def heuristic(state):\n
+                """Admissible heuristic: total number of people remaining on the left bank."""\n
+                m_left, c_left, boat = state\n
+                # This heuristic is admissible because the total number of people on the left \n
+                # must be moved to the right, and in the best case, two people move per trip.\n
+                return m_left + c_left\n
+            \n
+            def get_successors(state):\n
+                """Generates all valid successor states from the current state."""\n
+                m_left, c_left, boat = state\n
+                successors = []\n
+                \n
+                for m_move, c_move in MOVES:\n
+                    if boat == 'L':\n
+                        # Moving from Left to Right (subtract from left)\n
+                        new_m_left = m_left - m_move\n
+                        new_c_left = c_left - c_move\n
+                        new_boat = 'R'\n
+                    else:\n
+                        # Moving from Right to Left (add to left)\n
+                        new_m_left = m_left + m_move\n
+                        new_c_left = c_left + c_move\n
+                        new_boat = 'L'\n
+                    \n
+                    new_state = (new_m_left, new_c_left, new_boat)\n
+            \n
+                    # Validate state (only checking M/C counts on the left bank is sufficient due to M+C=3)\n
+                    if is_valid_state(new_m_left, new_c_left):\n
+                        successors.append(new_state)\n
+                        \n
+                return successors\n
+            \n
+            def a_star_search(start, goal):\n
+                """Performs A* search to find a solution path."""\n
+                # (f, g, state, path)\n
+                open_list = []\n
+                # The original code had '0' for g, which is correct for the start node. \n
+                # Corrected path to be [start] instead of [] in the tuple as the original code's path tracking was confusing.\n
+                # The original code's push was: (heuristic(start), 0, start, []).\n
+                # The original code's pop was: f, g, state, path = heappop(open_list)\n
+                # The original code's path append was: path + [state] \n
+                # I'll modify the path to store the sequence of *states* for clarity, and g is the path cost.\n
+                heapq.heappush(open_list, (heuristic(start), 0, start, [start])) \n
+                visited = set()\n
+                \n
+                while open_list:\n
+                    # Pop the state with the lowest f = g + h\n
+                    f, g, state, path = heapq.heappop(open_list) \n
+                    \n
+                    if state in visited:\n
+                        continue\n
+                    visited.add(state)\n
+            \n
+                    if state == goal:\n
+                        return path # Found the sequence of states\n
+                    \n
+                    for succ in get_successors(state):\n
+                        if succ not in visited:\n
+                            g_new = g + 1\n
+                            f_new = g_new + heuristic(succ)\n
+                            new_path = path + [succ]\n
+                            heapq.heappush(open_list, (f_new, g_new, succ, new_path))\n
+            \n
+                return None\n
+            \n
+            def display_path(path):\n
+                """Prints the solution path clearly."""\n
+                print("\\nSolution path (M_left, C_left, Boat_Position):")\n
+                for i, state in enumerate(path):\n
+                    print(f"Step {i}: {state}")\n
+            \n
+            # Driver code\n
+            if __name__ == "__main__":\n
+                path = a_star_search(START, GOAL)\n
+                if path:\n
+                    display_path(path)\n
+                else:\n
+                    print("No solution found.")\n`;
+
+      const str12 = `import heapq\n
+      \n
+      # Directions to move the blank tile (0 is the blank tile)\n
+      MOVES = {\n
+          'up': (-1, 0),\n
+          'down': (1, 0),\n
+          'left': (0, -1),\n
+          'right': (0, 1)\n
+      }\n
+      \n
+      # Function to calculate Manhattan Distance (heuristic)\n
+      def manhattan_distance(state, goal):\n
+          """Calculates the sum of Manhattan distances for all misplaced tiles."""\n
+          distance = 0\n
+          # The 8-Puzzle is 3x3\n
+          for i in range(1, 9):  # ignore 0 (blank)\n
+              # Find position (x1, y1) of tile i in the current state\n
+              x1, y1 = divmod(state.index(i), 3)\n
+              # Find position (x2, y2) of tile i in the goal state\n
+              x2, y2 = divmod(goal.index(i), 3)\n
+              \n
+              # Add Manhattan distance for tile i\n
+              distance += abs(x1 - x2) + abs(y1 - y2)\n
+              \n
+          return distance\n
+      \n
+      # Function to generate possible moves (neighbors) from the current state\n
+      def get_neighbors(state):\n
+          """Returns a list of (new_state, move_name) tuples."""\n
+          neighbors = []\n
+          zero_index = state.index(0)\n
+          # Convert 1D index to 2D coordinates (x=row, y=col)\n
+          x, y = divmod(zero_index, 3) \n
+          \n
+          for move_name, (dx, dy) in MOVES.items():\n
+              new_x, new_y = x + dx, y + dy\n
+              \n
+              # Check if the new position is within the 3x3 board boundaries\n
+              if 0 <= new_x < 3 and 0 <= new_y < 3:\n
+                  # Convert 2D coordinates back to 1D index\n
+                  new_index = new_x * 3 + new_y\n
+                  \n
+                  # Create the new state by swapping the blank tile (0) with the adjacent tile\n
+                  new_state = list(state)\n
+                  new_state[zero_index], new_state[new_index] = new_state[new_index], new_state[zero_index]\n
+                  neighbors.append((tuple(new_state), move_name))\n
+                  \n
+          return neighbors\n
+      \n
+      # A* algorithm\n
+      def a_star(start, goal):\n
+          """Finds the shortest sequence of moves from start to goal."""\n
+          # frontier stores: (f, g, current_state, path_to_state)\n
+          frontier = []\n
+          # f = g + h\n
+          heapq.heappush(frontier, (0 + manhattan_distance(start, goal), 0, start, []))\n
+          explored = set()\n
+          \n
+          while frontier:\n
+              f, g, current, path = heapq.heappop(frontier)\n
+              \n
+              if current == goal:\n
+                  return path # Path is a list of move names\n
+              \n
+              if current in explored:\n
+                  continue\n
+              explored.add(current)\n
+              \n
+              for neighbor, move in get_neighbors(current):\n
+                  if neighbor not in explored:\n
+                      new_g = g + 1\n
+                      new_f = new_g + manhattan_distance(neighbor, goal)\n
+                      heapq.heappush(frontier, (new_f, new_g, neighbor, path + [move]))\n
+                      \n
+          return None\n
+      \n
+      # Function to print puzzle nicely\n
+      def print_state(state):\n
+          """Prints the 8-puzzle board in a 3x3 format."""\n
+          for i in range(0, 9, 3):\n
+              # The original code's slice was incorrect (state[i:i+3]) - fixed\n
+              print(tuple(state[i:i+3])) \n
+          print()\n
+      \n
+      # Driver code\n
+      if __name__ == "__main__":\n
+          # The start_state in the original code had an 8 at the end which was confusing,\n
+          # and the print state later showed an 8 instead of a 0 (blank) in the start state.\n
+          # The corrected start_state should match the displayed start state: \n
+          # (1, 2, 3) (4, 0, 6) (7, 5, 8) if 0 is the blank.\n
+          start_state = (1, 2, 3,\n
+                         4, 0, 6,\n
+                         7, 5, 8) \n
+          \n
+          # Goal state where 0 is in the last position (bottom right)\n
+          goal_state = (1, 2, 3,\n
+                        4, 5, 6,\n
+                        7, 8, 0)\n
+          \n
+          print("Start State:")\n
+          print_state(start_state)\n
+          \n
+          print("Goal State:")\n
+          print_state(goal_state)\n
+          \n
+          solution = a_star(start_state, goal_state)\n
+          \n
+          if solution:\n
+              print("Solution found!")\n
+              print("Moves:", solution)\n
+              print("Number of moves:", len(solution))\n
+          else:\n
+              print("No solution exists.")\n`;
+
+      const str13 = `import math\n
+      from typing import List, Tuple, Dict, Optional\n
+      \n
+      # Define candidate investment schemes and short descriptions\n
+      SCHEMES = {\n
+          "Fixed Deposit (FD)": "Low risk, guaranteed returns; good for capital preservation and short/medium term.",\n
+          "Public Provident Fund (PPF)": "Long-term government-backed savings; tax benefits; low risk.",\n
+          "National Pension System (NPS)": "Long-term retirement savings with equity/debt options.",\n
+          "Debt Mutual Funds / Bonds": "Lower volatility than equities; suitable for income and preservation.",\n
+          "Balanced/Hybrid Mutual Funds": "Mix of equity and debt; moderate risk-return profile.",\n
+          "Large-cap Equity Mutual Funds / Index Funds": "Lower volatility among equities; long-term growth.",\n
+          "Mid/Small-cap Equity Mutual Funds": "Higher return potential with higher volatility.",\n
+          "Systematic Investment Plan (SIP) in Mutual Funds": "Method of investing regularly - works well for rupee-cost averaging.",\n
+          "ULIP (Unit Linked Insurance Plan)": "Combines insurance + investment; medium to high charges - suitable if insurance+invest.",\n
+          "Gold (sovereign/ETFs/physical)": "Hedge against inflation and market volatility; diversifier.",\n
+          "Real Estate (Residential/REITs)": "Illiquid but can be good for long-term wealth and rental income.",\n
+          "Emergency Fund (Savings/liquid funds)": "Highly liquid buffer covering 6-12 months expenses.",\n
+      }\n
+      \n
+      # Convert risk input to numeric score (original values were likely placeholder/error, normalized to 0..1)\n
+      RISK_MAP = {\n
+          "low": 0.2, # Lower risk tolerance\n
+          "medium": 0.5,\n
+          "high": 0.9  # Higher risk tolerance\n
+      }\n
+      \n
+      def normalize_text(s: str) -> str:\n
+          """Utility function to clean up string input."""\n
+          return s.strip().lower()\n
+      \n
+      class InvestmentAdvisor:\n
+          def __init__(self):\n
+              # Base suitability weights by scheme for three axes:\n
+              # age_group: 'young' (<35), 'mid' (35-54), 'senior' (>=55)\n
+              # income_tier: 'low' (<500k), 'middle' (500k-2M), 'high' (>2M)\n
+              # risk: continuous 0..1 (higher means more tolerant)\n
+              \n
+              self.base_by_age = {\n
+                  "Fixed Deposit (FD)": {"young": 0.3, "mid": 0.4, "senior": 0.9},\n
+                  "Public Provident Fund (PPF)": {"young": 0.6, "mid": 0.8, "senior": 0.9},\n
+                  "National Pension System (NPS)": {"young": 0.8, "mid": 0.9, "senior": 0.6},\n
+                  "Debt Mutual Funds / Bonds": {"young": 0.3, "mid": 0.7, "senior": 0.9},\n
+                  "Balanced/Hybrid Mutual Funds": {"young": 0.6, "mid": 0.8, "senior": 0.6},\n
+                  "Large-cap Equity Mutual Funds / Index Funds": {"young": 0.9, "mid": 0.8, "senior": 0.4},\n
+                  "Mid/Small-cap Equity Mutual Funds": {"young": 0.9, "mid": 0.6, "senior": 0.2},\n
+                  "Systematic Investment Plan (SIP) in Mutual Funds": {"young": 0.9, "mid": 0.9, "senior": 0.5},\n
+                  "ULIP (Unit Linked Insurance Plan)": {"young": 0.6, "mid": 0.5, "senior": 0.2}, # Original 6.6 corrected to 0.6\n
+                  "Gold (sovereign/ETFs/physical)": {"young": 0.4, "mid": 0.6, "senior": 0.6},\n
+                  "Real Estate (Residential/REITs)": {"young": 0.3, "mid": 0.8, "senior": 0.7}, # Original 8.7 corrected to 0.7\n
+                  "Emergency Fund (Savings/liquid funds)": {"young": 0.9, "mid": 0.9, "senior": 0.9},\n
+              }\n
+      \n
+              self.base_by_income = {\n
+                  "Fixed Deposit (FD)": {"low": 0.8, "middle": 0.7, "high": 0.4},\n
+                  "Public Provident Fund (PPF)": {"low": 0.7, "middle": 0.8, "high": 0.6},\n
+                  "National Pension System (NPS)": {"low": 0.4, "middle": 0.7, "high": 0.9},\n
+                  "Debt Mutual Funds / Bonds": {"low": 0.6, "middle": 0.7, "high": 0.8},\n
+                  "Balanced/Hybrid Mutual Funds": {"low": 0.5, "middle": 0.8, "high": 0.8},\n
+                  "Large-cap Equity Mutual Funds / Index Funds": {"low": 0.2, "middle": 0.7, "high": 0.9},\n
+                  "Mid/Small-cap Equity Mutual Funds": {"low": 0.1, "middle": 0.5, "high": 0.9},\n
+                  "Systematic Investment Plan (SIP) in Mutual Funds": {"low": 0.6, "middle": 0.9, "high": 0.9},\n
+                  "ULIP (Unit Linked Insurance Plan)": {"low": 0.2, "middle": 0.5, "high": 0.6},\n
+                  "Gold (sovereign/ETFs/physical)": {"low": 0.3, "middle": 0.6, "high": 0.8},\n
+                  "Real Estate (Residential/REITs)": {"low": 0.1, "middle": 0.6, "high": 0.9},\n
+                  "Emergency Fund (Savings/liquid funds)": {"low": 0.95, "middle": 0.9, "high": 0.9},\n
+              }\n
+      \n
+              # Preference of scheme depending on risk tolerance (r is risk_val from 0 to 1)\n
+              self.risk_sensitivity = {\n
+                  "Fixed Deposit (FD)": lambda r: 1 - r, # lower risk (r closer to 0) preferred\n
+                  "Public Provident Fund (PPF)": lambda r: 1 - (r * 0.8), # Adjusted from original, favors lower risk\n
+                  "National Pension System (NPS)": lambda r: 0.5 + 0.5 * r, # neutral/moderate risk\n
+                  "Debt Mutual Funds / Bonds": lambda r: 1 - (r * 0.5), # Adjusted from original, favors lower risk\n
+                  "Balanced/Hybrid Mutual Funds": lambda r: 0.6 + 0.4 * r, # favors moderate/higher risk\n
+                  "Large-cap Equity Mutual Funds / Index Funds": lambda r: 0.3 + 0.7 * r, # favors higher risk\n
+                  "Mid/Small-cap Equity Mutual Funds": lambda r: 0.1 + 0.9 * r, # strongly favors higher risk\n
+                  "Systematic Investment Plan (SIP) in Mutual Funds": lambda r: 0.4 + 0.6 * r, # favors higher risk\n
+                  "ULIP (Unit Linked Insurance Plan)": lambda r: 0.2 + 0.8 * r, # favors higher risk\n
+                  "Gold (sovereign/ETFs/physical)": lambda r: 0.5 + 0.2 * (1 - abs(r - 0.5)), # stableish, favors middle risk\n
+                  "Real Estate (Residential/REITs)": lambda r: 0.4 + 0.5 * (1 - abs(r - 0.6)), # neutral/moderate risk\n
+                  "Emergency Fund (Savings/liquid funds)": lambda r: 1.0, # always important\n
+              }\n
+      \n
+          def classify_age_group(self, age: int) -> str:\n
+              """Classifies age into predefined groups."""\n
+              if age < 35:\n
+                  return "young"\n
+              elif age < 55:\n
+                  return "mid"\n
+              else:\n
+                  return "senior"\n
+      \n
+          def classify_income_tier(self, annual_income: float) -> str:\n
+              """Classifies annual income (INR) into predefined tiers."""\n
+              # low: < 500k, middle: 500k-2M, high: > 2M\n
+              if annual_income < 500_000:\n
+                  return "low"\n
+              elif annual_income <= 2_000_000:\n
+                  return "middle"\n
+              else:\n
+                  return "high"\n
+      \n
+          def risk_value(self, risk_text: str) -> float:\n
+              """Converts risk text or number (0..1) to a numeric risk tolerance score."""\n
+              s = normalize_text(risk_text)\n
+              \n
+              if s in ("l", "low", "conservative", "safe"):\n
+                  return RISK_MAP["low"]\n
+              if s in ("m", "medium", "moderate", "balanced"):\n
+                  return RISK_MAP["medium"]\n
+              if s in ("h", "high", "aggressive"):\n
+                  return RISK_MAP["high"]\n
+              \n
+              # fallback: try parse number 0..1\n
+              try:\n
+                  val = float(risk_text)\n
+                  return max(0.0, min(1.0, val))\n
+              except Exception:\n
+                  return RISK_MAP["medium"]\n
+      \n
+          def score_scheme(self, scheme: str, age_group: str, income_tier: str, risk_val: float) -> float:\n
+              """Calculates a combined suitability score for an investment scheme."""\n
+              age_score = self.base_by_age.get(scheme, {}).get(age_group, 0.5)\n
+              income_score = self.base_by_income.get(scheme, {}).get(income_tier, 0.5)\n
+              risk_factor = self.risk_sensitivity.get(scheme, lambda r: 0.5)(risk_val)\n
+      \n
+              # Emergency fund must always be prioritized\n
+              if scheme == "Emergency Fund (Savings/liquid funds)":\n
+                  return 1.0 \n
+      \n
+              # Combine: weighted geometric mean (using multiplication as a proxy for geometric mean)\n
+              # weights: age 0.35, income 0.25, risk 0.40\n
+              w_age, w_inc, w_risk = 0.35, 0.25, 0.40\n
+              \n
+              # Use multiplicative style (geometric-like)\n
+              # s = (age_score^w_age) * (income_score^w_inc) * (risk_factor^w_risk)\n
+              s = (age_score ** w_age) * (income_score ** w_inc) * (risk_factor ** w_risk)\n
+      \n
+              return s\n
+      \n
+          def explain_score(self, scheme: str, age_group: str, income_tier: str, risk_val: float) -> str:\n
+              """Generates an explanation of the raw scores contributing to the scheme score."""\n
+              age_score = self.base_by_age.get(scheme, {}).get(age_group, 0.5)\n
+              income_score = self.base_by_income.get(scheme, {}).get(income_tier, 0.5)\n
+              risk_factor = self.risk_sensitivity.get(scheme, lambda r: 0.5)(risk_val)\n
+              \n
+              return (f"age suitability: {age_score:.2f}, income fit: {income_score:.2f}, "\n
+                      f"risk match: {risk_factor:.2f}")\n
+      \n
+          def suggest(self, age: int, annual_income: float, risk_pref: str, top_n: int = 6) -> List[Dict]:\n
+              """Generates a ranked list of investment suggestions."""\n
+              age_group = self.classify_age_group(age)\n
+              income_tier = self.classify_income_tier(annual_income)\n
+              risk_val = self.risk_value(risk_pref)\n
+              \n
+              scores = []\n
+              for scheme in SCHEMES:\n
+                  sc = self.score_scheme(scheme, age_group, income_tier, risk_val)\n
+                  scores.append((scheme, sc))\n
+      \n
+              # Normalise scores for 'confidence' display\n
+              total_raw_score = sum(score for _, score in scores)\n
+              # Avoid division by zero if all scores are 0 (should not happen due to Emergency Fund)\n
+              total_raw_score = total_raw_score or 1.0 \n
+              \n
+              ranked = sorted(scores, key=lambda x: x[1], reverse=True)\n
+              \n
+              result = []\n
+              for scheme, raw_score in ranked[:top_n]:\n
+                  confidence = raw_score / total_raw_score\n
+                  result.append({\n
+                      "scheme": scheme,\n
+                      "description": SCHEMES.get(scheme, ""),\n
+                      "confidence": round(confidence * 100, 1), # percent\n
+                      "raw_score": round(raw_score, 4),\n
+                      "explanation": self.explain_score(scheme, age_group, income_tier, risk_val)\n
+                  })\n
+              \n
+              return result\n
+      \n
+      # Simple CLI demonstration\n
+      def demo_cli():\n
+          print("=== Investment Advisor (Rule-based Expert System) ===")\n
+          try:\n
+              age = int(input("Enter your age (years): ").strip())\n
+              income = float(input("Enter your annual income (INR): ").strip())\n
+              risk = input("Enter your risk preference (low / medium / high): ").strip()\n
+          except Exception as e:\n
+              print("Invalid input. Please enter numeric values for age and income.")\n
+              return\n
+      \n
+          adv = InvestmentAdvisor()\n
+          suggestions = adv.suggest(age=age, annual_income=income, risk_pref=risk, top_n=6)\n
+      \n
+          print("\\nTop suggestions:\\n")\n
+          for i, s in enumerate(suggestions, 1):\n
+              print(f"{i}. {s['scheme']} [{s['confidence']}% confident]")\n
+              print(f"    ({s['description']})")\n
+              print(f"    Reason: {s['explanation']}")\n
+              print()\n
+      \n
+      # Programmatic example to show functionality\n
+      if __name__ == "__main__":\n
+          advisor = InvestmentAdvisor()\n
+      \n
+          # Example 1: Young, medium income, high risk (Age=28, Income=800k INR, Risk=high)\n
+          print("Example A: age=28, income=800000 INR, risk=high")\n
+          out = advisor.suggest(age=28, annual_income=800_000, risk_pref="high")\n
+          for r in out:\n
+              print(f"- {r['scheme']} [{r['confidence']}%] -> {r['explanation']}")\n
+          print("\\n")\n
+      \n
+          # Example 2: Senior, low income, low risk (Age=62, Income=300k INR, Risk=low)\n
+          print("Example B: age=62, income=300000 INR, risk=low")\n
+          out2 = advisor.suggest(age=62, annual_income=300_000, risk_pref="low")\n
+          for r in out2:\n
+              print(f"- {r['scheme']} [{r['confidence']}%] -> {r['explanation']}")\n
+          print("\\n")\n
+      \n
+          # Optional: uncomment the line below to run the interactive CLI\n
+          # demo_cli()\n`;
+
+      const str14 = `import math\n
+      from typing import List\n
+      \n
+      # Alpha-Beta Pruning Algorithm\n
+      def alpha_beta(depth: int, node_index: int, maximizing_player: bool, \n
+                     values: List[int], alpha: float, beta: float, max_depth: int) -> int:\n
+          """\n
+          Performs the Alpha-Beta Pruning search on a game tree.\n
+          \n
+          :param depth: Current depth in the tree (starts at 0).\n
+          :param node_index: Index of the current node (0 is the root).\n
+          :param maximizing_player: True if it's the maximizer's turn (MAX node), False otherwise (MIN node).\n
+          :param values: A list of utility values for the leaf nodes.\n
+          :param alpha: The best value found so far for the maximizer on the current path.\n
+          :param beta: The best value found so far for the minimizer on the current path.\n
+          :param max_depth: The depth of the leaf nodes (height of the tree).\n
+          :return: The optimal value found for the current subtree.\n
+          """\n
+          \n
+          # Base Case: leaf node reached\n
+          if depth == max_depth:\n
+              # The node_index directly maps to the index in the leaf 'values' list\n
+              return values[node_index]\n
+      \n
+          if maximizing_player:\n
+              best_val = -math.inf\n
+              # Explore left child (2*index + 1) and right child (2*index + 2)\n
+              for i in range(2):\n
+                  val = alpha_beta(depth + 1, node_index * 2 + i + 1, False, values, alpha, beta, max_depth)\n
+                  \n
+                  best_val = max(best_val, val)\n
+                  alpha = max(alpha, best_val)\n
+                  \n
+                  # Alpha Beta Pruning: If the current best value for MAX (alpha) is greater \n
+                  # than the best value found so far for MIN (beta) on the path above, \n
+                  # MIN will never choose this branch, so we can stop exploring.\n
+                  if beta <= alpha: # Use beta <= alpha for inclusive check\n
+                      break\n
+              return best_val\n
+          else: # Minimizing player\n
+              best_val = math.inf\n
+              # Explore left child (2*index + 1) and right child (2*index + 2)\n
+              for i in range(2):\n
+                  val = alpha_beta(depth + 1, node_index * 2 + i + 1, True, values, alpha, beta, max_depth)\n
+                  \n
+                  best_val = min(best_val, val)\n
+                  beta = min(beta, best_val)\n
+                  \n
+                  # Alpha Beta Pruning: If the current best value for MIN (beta) is less \n
+                  # than the best value found so far for MAX (alpha) on the path above, \n
+                  # MAX will never choose this branch, so we can stop exploring.\n
+                  if beta <= alpha: # Use beta <= alpha for inclusive check\n
+                      break\n
+              return best_val\n
+      \n
+      # Driver code\n
+      if __name__ == "__main__":\n
+          # Example: Binary game tree of depth 3 (8 leaf nodes)\n
+          # Leaf nodes store the utility values for minimax.\n
+          values = [3, 5, 6, 9, 1, 2, 0, -1]\n
+          \n
+          # Calculate the depth of the tree (e.g., log2(8) = 3)\n
+          if len(values) > 0:\n
+              max_depth = int(math.log2(len(values)))\n
+          else:\n
+              max_depth = 0\n
+      \n
+          print("Leaf node values:", values)\n
+          \n
+          # Initial call: depth=0, node_index=0, maximizing_player=True (MAX root node),\n
+          # alpha=-inf, beta=+inf, max_depth=3\n
+          optimal_value = alpha_beta(0, 0, True, values, -math.inf, math.inf, max_depth)\n
+          \n
+          print("The optimal value is:", optimal_value)\n`;
+
+      const str15 = `import random\n
+      from typing import List, Dict\n
+      \n
+      # Predefined responses for simple keywords\n
+      RESPONSES: Dict[str, List[str]] = {\n
+          "hello": ["Hello!", "Hi there!", "Hey! How can I help you?"],\n
+          "hi": ["Hi!", "Hello there!", "Hey! What's up?"],\n
+          "how are you": ["I'm just a bot, but I'm doing great! How about you?", "Doing fine! Thanks for asking."],\n
+          "fine": ["Glad to hear that!", "That's great!"],\n
+          "what is your name": ["I'm ChatBot, your virtual assistant.", "You can call me ChatBot."],\n
+          "bye": ["Goodbye!", "See you soon!", "Take care!"],\n
+          "thank you": ["You're welcome!", "Anytime!", "Glad to help!"],\n
+          "help": ["Sure, I'm here to help! What do you need?"],\n
+      }\n
+      \n
+      # Default fallback responses\n
+      DEFAULT_RESPONSES: List[str] = [\n
+          "I'm not sure I understand. Could you rephrase that?",\n
+          "Hmm, interesting... Tell me more!",\n
+          "Let's talk about something else.",\n
+          "I didn't quite get that. Try asking differently."\n
+      ]\n
+      \n
+      def get_response(user_input: str) -> str:\n
+          """Matches user input to a keyword and returns a random response."""\n
+          # Convert input to lowercase for case-insensitive matching\n
+          user_input = user_input.lower()\n
+          \n
+          # Try to find a matching keyword (longest match or exact match preferred in real systems, \n
+          # but here we use simple sequential check)\n
+          for key in RESPONSES:\n
+              if key in user_input:\n
+                  return random.choice(RESPONSES[key])\n
+                  \n
+          # If no keyword matched, return a default response\n
+          return random.choice(DEFAULT_RESPONSES)\n
+      \n
+      def chat():\n
+          """Main chat loop."""\n
+          print("\\nChatBot: Hello! I'm your simple chatbot. Type 'bye' to exit.")\n
+          \n
+          while True:\n
+              user_input = input("You: ").strip()\n
+              \n
+              if user_input.lower() in ["bye", "exit", "quit"]:\n
+                  # Pick a farewell from the 'bye' responses if available, otherwise a simple goodbye\n
+                  farewell = random.choice(RESPONSES.get("bye", ["Goodbye!"])) \n
+                  print(f"ChatBot: {farewell}")\n
+                  break\n
+                  \n
+              if not user_input:\n
+                  continue\n
+                  \n
+              response = get_response(user_input)\n
+              print("ChatBot:", response)\n
+      \n
+      # Driver code\n
+      if __name__ == "__main__":\n
+          chat()\n
+           \n`;
+
+      const str16 = `from typing import List, Tuple, Set, Dict, Optional, Callable\n
+from copy import deepcopy\n
+\n
+# Type alias for predicates\n
+Predicate = Tuple[str, ...] # e.g. ("on", "A", "B"), ("clear", "A"), ("handempty",)\n
+\n
+# Predicate helper functions\n
+def pred_on(x: str, y: str) -> Predicate:\n
+    return ("on", x, y)\n
+def pred_clear(x: str) -> Predicate:\n
+    return ("clear", x)\n
+def pred_holding(x: str) -> Predicate:\n
+    return ("holding", x)\n
+def pred_handempty() -> Predicate:\n
+    return ("handempty",)\n
+\n
+# Operator representation\n
+class Operator:\n
+    """Represents a Blocks World operator (action)."""\n
+    def __init__(self, name: str, args: Tuple[str, ...],\n
+                 preconds: List[Predicate],\n
+                 add_effects: List[Predicate],\n
+                 del_effects: List[Predicate]):\n
+        self.name = name\n
+        self.args = args\n
+        self.preconds = preconds\n
+        self.add_effects = add_effects\n
+        self.del_effects = del_effects\n
+\n
+    def __repr__(self):\n
+        if self.args:\n
+            return f"{self.name}({', '.join(self.args)})"\n
+        return f"{self.name}()"\n
+\n
+    def apply(self, state: Set[Predicate]):\n
+        """Modifies the state by applying delete and add effects."""\n
+        # Apply delete effects.\n
+        for d in self.del_effects:\n
+            if d in state:\n
+                state.remove(d)\n
+        # Apply add effects\n
+        for a in self.add_effects:\n
+            state.add(a)\n
+\n
+# Ground operator factories\n
+def make_Pickup(x: str) -> Operator:\n
+    """Pickup block x from the table."""\n
+    pre = [pred_clear(x), pred_on(x, "table"), pred_handempty()]\n
+    adds = [pred_holding(x)]\n
+    dels = [pred_clear(x), pred_on(x, "table"), pred_handempty()]\n
+    return Operator("Pickup", (x,), pre, adds, dels)\n
+\n
+def make_Putdown(x: str) -> Operator:\n
+    """Putdown block x onto the table."""\n
+    pre = [pred_holding(x)]\n
+    adds = [pred_on(x, "table"), pred_clear(x), pred_handempty()]\n
+    dels = [pred_holding(x)]\n
+    return Operator("Putdown", (x,), pre, adds, dels)\n
+\n
+def make_Unstack(x: str, y: str) -> Operator:\n
+    """Unstack block x from block y."""\n
+    pre = [pred_on(x, y), pred_clear(x), pred_handempty()]\n
+    adds = [pred_holding(x), pred_clear(y)]\n
+    dels = [pred_on(x, y), pred_clear(x), pred_handempty()]\n
+    return Operator("Unstack", (x, y), pre, adds, dels)\n
+\n
+def make_Stack(x: str, y: str) -> Operator:\n
+    """Stack block x onto block y."""\n
+    pre = [pred_holding(x), pred_clear(y)]\n
+    adds = [pred_on(x, y), pred_clear(x), pred_handempty()]\n
+    dels = [pred_holding(x), pred_clear(y)]\n
+    return Operator("Stack", (x, y), pre, adds, dels)\n
+\n
+# Goal-stack planner\n
+class GoalStackPlanner:\n
+    """Implements the Goal-Stack Planning algorithm."""\n
+    def __init__(self, initial_state: Set[Predicate], goal_state: Set[Predicate], blocks: List[str]):\n
+        self.state = deepcopy(initial_state) # current world state\n
+        self.goal = deepcopy(goal_state)     # set of desired predicates\n
+        self.blocks = blocks                 # list of block names\n
+        self.plan: List[Operator] = []       # resulting plan\n
+        # stack elements are either Predicate (goal) or Operator instance (to be applied)\n
+        self.stack: List[Operator | Predicate] = []\n
+\n
+    def is_satisfied(self, predicate: Predicate) -> bool:\n
+        """Checks if a predicate is true in the current state."""\n
+        return predicate in self.state\n
+\n
+    def select_operator_for(self, goal: Predicate) -> Optional[Operator]:\n
+        """Chooses an operator that satisfies the given goal predicate."""\n
+        pred_name = goal[0]\n
+\n
+        if pred_name == "on":\n
+            x, y = goal[1], goal[2]\n
+            if y == "table":\n
+                # Goal: on(x, table) => use Putdown(x)\n
+                return make_Putdown(x)\n
+            else:\n
+                # Goal: on(x, y) where y is a block => use Stack(x, y)\n
+                return make_Stack(x, y)\n
+\n
+        if pred_name == "holding":\n
+            x = goal[1]\n
+            # Goal: holding(x). Check where x is currently.\n
+            # Prefer Unstack if on another block, otherwise Pickup if on table.\n
+            for p in self.state:\n
+                if p[0] == "on" and p[1] == x:\n
+                    z = p[2]\n
+                    if z == "table":\n
+                        return make_Pickup(x)\n
+                    else:\n
+                        return make_Unstack(x, z)\n
+            # If not 'on' anything (shouldn't happen in valid state), fall back to Pickup\n
+            return make_Pickup(x) \n
+\n
+        if pred_name == "clear":\n
+            x = goal[1]\n
+            # Goal: clear(x). Achieved by Unstack(w, x) if some block w is on x.\n
+            for p in self.state:\n
+                if p[0] == "on" and p[2] == x:\n
+                    w = p[1] # w is the block on x\n
+                    return make_Unstack(w, x)\n
+            # Already clear, no operator needed\n
+            return None\n
+\n
+        if pred_name == "handempty":\n
+            # Goal: handempty(). Achieved by Putdown(x) if holding(x).\n
+            for p in self.state:\n
+                if p[0] == "holding":\n
+                    x = p[1]\n
+                    return make_Putdown(x)\n
+            # Already handempty, no operator needed\n
+            return None\n
+        \n
+        return None\n
+\n
+    def goal_stack_planning(self) -> Optional[List[Operator]]:\n
+        """Main planning loop."""\n
+        # initialize stack with all goal predicates (reversed sort for deterministic order)\n
+        for g in sorted(self.goal, key=str, reverse=True):\n
+            self.stack.append(g)\n
+\n
+        visited_iterations = 0\n
+        max_iterations = 10000 \n
+\n
+        while self.stack:\n
+            if visited_iterations > max_iterations:\n
+                print("Exceeded max iterations. Planning failed.")\n
+                return None\n
+            visited_iterations += 1\n
+            \n
+            top = self.stack.pop()\n
+\n
+            # If top is a predicate (goal)\n
+            if isinstance(top, tuple):\n
+                top_pred: Predicate = top\n
+                # Goal already satisfied?\n
+                if self.is_satisfied(top_pred):\n
+                    continue\n
+                \n
+                # Choose operator to satisfy it\n
+                op = self.select_operator_for(top_pred)\n
+                if op is None:\n
+                    print(f"No operator found to achieve goal {top_pred}; planning failed.")\n
+                    return None\n
+                \n
+                # Push operator (as a marker) and then its preconditions\n
+                self.stack.append(op)\n
+                \n
+                # Push preconditions that are not currently satisfied\n
+                # Reversed so first precond is processed first\n
+                for prec in reversed(op.preconds): \n
+                    if not self.is_satisfied(prec):\n
+                        self.stack.append(prec)\n
+\n
+            # Top is an operator instance\n
+            else:\n
+                op: Operator = top\n
+                \n
+                # Check if all preconditions are satisfied\n
+                unsatisfied = [p for p in op.preconds if not self.is_satisfied(p)]\n
+                \n
+                if not unsatisfied:\n
+                    # Apply operator\n
+                    op.apply(self.state)\n
+                    self.plan.append(op)\n
+                else:\n
+                    # Operator not yet applicable; push it back and push unsatisfied preconditions\n
+                    self.stack.append(op)\n
+                    for prec in reversed(unsatisfied):\n
+                        self.stack.append(prec)\n
+\n
+        return self.plan\n
+\n
+# Utilities to build states\n
+def make_state(on_list: List[Tuple[str, str]]) -> Set[Predicate]:\n
+    """\n
+    Builds a Blocks World state (set of predicates) from a list of (block, location) tuples.\n
+    Also computes 'clear' and 'handempty' predicates initially.\n
+    """\n
+    state: Set[Predicate] = set()\n
+    \n
+    # 1. Add all 'on' predicates\n
+    for x, y in on_list:\n
+        state.add(pred_on(x, y))\n
+        \n
+    # 2. Compute 'clear' predicates\n
+    # Identify all blocks (excluding 'table')\n
+    blocks = {x for x, _ in on_list} | {y for _, y in on_list if y != "table"}\n
+    \n
+    for b in blocks:\n
+        # Check if any block w is on block b\n
+        occupied = any(p for p in state if p[0] == "on" and p[2] == b)\n
+        if not occupied:\n
+            state.add(pred_clear(b))\n
+            \n
+    # 3. Add 'handempty' (assuming initial state is always handempty)\n
+    state.add(pred_handempty())\n
+    return state\n
+\n
+def print_plan(plan: List[Operator]):\n
+    """Prints the final plan (sequence of operators)."""\n
+    if not plan:\n
+        print("No plan (empty or failed).")\n
+        return\n
+    print("Plan ({} steps): ".format(len(plan)))\n
+    for i, op in enumerate(plan, 1):\n
+        print(f"{i}. {op}")\n
+\n
+# Examples\n
+if __name__ == "__main__":\n
+    # Example 1: Simple make A on B given A on table, B on table\n
+    blocks1 = ["A", "B", "C"]\n
+    initial_on1 = [("A", "table"), ("B", "table"), ("C", "table")]\n
+    initial_state1 = make_state(initial_on1)\n
+    goal_preds1 = {pred_on("A", "B")} # goal: on(A, B)\n
+    \n
+    planner1 = GoalStackPlanner(initial_state1, goal_preds1, blocks1)\n
+    plan1 = planner1.goal_stack_planning()\n
+    \n
+    print("Example 1:")\n
+    print_plan(plan1)\n
+    print()\n
+\n
+    # Example 2: More classical: initial: A on B, B on table, C on table\n
+    # goal: on(C, A) and on(A, B) \n
+    blocks2 = ["A", "B", "C"]\n
+    initial_on2 = [("A", "B"), ("B", "table"), ("C", "table")]\n
+    initial_state2 = make_state(initial_on2)\n
+    goal_preds2 = {pred_on("C", "A"), pred_on("A", "B")} # both goals\n
+    \n
+    planner2 = GoalStackPlanner(initial_state2, goal_preds2, blocks2)\n
+    plan2 = planner2.goal_stack_planning()\n
+    \n
+    print("Example 2:")\n
+    print_plan(plan2)\n
+    print()\n`;
+
+      const str17 = `import random\n
+from typing import List, Tuple\n
+\n
+# Function to calculate the heuristic value (number of attacking pairs)\n
+def heuristic(state: List[int]) -> int:\n
+    """\n
+    Calculates the number of pairs of attacking queens.\n
+    State is a list where state[col] = row of the queen in that column.\n
+    """\n
+    attacks = 0\n
+    n = len(state)\n
+    \n
+    for i in range(n):\n
+        for j in range(i + 1, n):\n
+            # Check for same row (horizontal attack)\n
+            if state[i] == state[j]:\n
+                attacks += 1\n
+            # Check for diagonal attack\n
+            # Two queens at (row_i, col_i) and (row_j, col_j) are on the same diagonal if:\n
+            # abs(row_i - row_j) == abs(col_i - col_j)\n
+            # Here, row_i = state[i], col_i = i, row_j = state[j], col_j = j\n
+            elif abs(state[i] - state[j]) == abs(i - j):\n
+                attacks += 1\n
+                \n
+    return attacks\n
+\n
+# Function to generate neighbors by moving one queen in its column\n
+def get_neighbors(state: List[int]) -> List[List[int]]:\n
+    """\n
+    Generates all successor states by moving one queen one square in its column.\n
+    """\n
+    neighbors = []\n
+    n = len(state)\n
+    \n
+    # Iterate over each column\n
+    for col in range(n):\n
+        # Try moving the queen in this column to every other row\n
+        for row in range(n):\n
+            # Skip the current row position (no move)\n
+            if state[col] != row:\n
+                # Create a new state\n
+                new_state = state.copy()\n
+                # Move the queen in 'col' to 'row'\n
+                new_state[col] = row\n
+                neighbors.append(new_state)\n
+                \n
+    return neighbors\n
+\n
+# Hill Climbing Algorithm\n
+def hill_climb(initial_state: List[int]) -> Tuple[List[int], int]:\n
+    """\n
+    Performs Hill Climbing search to minimize the heuristic value.\n
+    Stops when a state with no better neighbors (a peak/local maximum) is reached.\n
+    """\n
+    current_state = initial_state\n
+    \n
+    while True:\n
+        current_h = heuristic(current_state)\n
+        neighbors = get_neighbors(current_state)\n
+        \n
+        next_state = None\n
+        next_h = current_h # Start with current state's heuristic as the best so far\n
+        \n
+        # Find the neighbor with the lowest (best) heuristic value\n
+        for neighbor in neighbors:\n
+            h = heuristic(neighbor)\n
+            if h < next_h:\n
+                next_state = neighbor\n
+                next_h = h\n
+        \n
+        # No better neighbor found (we are at a local optimum or the global optimum)\n
+        if next_h >= current_h:\n
+            return current_state, current_h\n
+        \n
+        # Move to the better neighbor\n
+        current_state = next_state\n
+        # current_h will be updated in the next iteration\n
+\n
+# Driver code\n
+if __name__ == "__main__":\n
+    N = 8 # Size of the board (N-Queens)\n
+    \n
+    # Generate a random initial state: a list of N row indices (0 to N-1)\n
+    # The original code had a slight error in range: [random.randint(0, 1) for _ in range(n)]\n
+    initial_state = [random.randint(0, N - 1) for _ in range(N)] \n
+    \n
+    print(f"Initial State (N={N}):", initial_state)\n
+    print("Initial Heuristic:", heuristic(initial_state))\n
+    \n
+    final_state, final_h = hill_climb(initial_state)\n
+    \n
+    print("\\nFinal State:", final_state)\n
+    print("Final Heuristic:", final_h)\n
+    \n
+    if final_h == 0:\n
+        print("\\nSolution Found! (0 attacking pairs)")\n
+    else:\n
+        print("\\nLocal Maximum Reached (No Perfect Solution Found)")\n
+     \n
+Initial State (N=8): [0, 4, 0, 7, 0, 4, 3, 5]\n
+Initial Heuristic: 6\n
+\n
+Final State: [1, 6, 2, 7, 0, 4, 3, 5]\n
+Final Heuristic: 2\n
+\n
+Local Maximum Reached (No Perfect Solution Found)\n`;
 
       // ---------------------------------
       // COPY FUNCTION
