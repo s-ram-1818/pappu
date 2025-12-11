@@ -24,354 +24,359 @@
       <button onclick="copyText(str7)">LetterCount</button>
       <button onclick="copyText(str8)">Radix</button>
     </div>
+    <div>
+      <h6>DL</h6>
+      <button onclick="copyText(str9)">Link</button>
+    </div>
 
     <script>
       // ---------------------------------
       // STRING 1
       // ---------------------------------
       const str1 = `#include <bits/stdc++.h>
-using namespace std;
+      using namespace std;
 
-// Iterative Euclidean Algorithm
-int gcd_iterative(int a, int b) {
-    while (b != 0) {
-        int r = a % b;  // remainder
-        a = b;
-        b = r;
-    }
-    return a;  // a = gcd
-}
+      // Iterative Euclidean Algorithm
+      int gcd_iterative(int a, int b) {
+          while (b != 0) {
+              int r = a % b;  // remainder
+              a = b;
+              b = r;
+          }
+          return a;  // a = gcd
+      }
 
-// Recursive Euclidean Algorithm
-int gcd_recursive(int a, int b) {
-    if (b == 0) return a;
-    return gcd_recursive(b, a % b);
-}
+      // Recursive Euclidean Algorithm
+      int gcd_recursive(int a, int b) {
+          if (b == 0) return a;
+          return gcd_recursive(b, a % b);
+      }
 
-int main() {
-    int a, b;
-    cin >> a >> b;
+      int main() {
+          int a, b;
+          cin >> a >> b;
 
-    cout << "GCD (iterative): " << gcd_iterative(a, b) << " ";
-    cout << "GCD (recursive): " << gcd_recursive(a, b) << " ";
+          cout << "GCD (iterative): " << gcd_iterative(a, b) << " ";
+          cout << "GCD (recursive): " << gcd_recursive(a, b) << " ";
 
-    return 0;
-}
-`;
+          return 0;
+      }
+      `;
       const str2 = `
-#include <bits/stdc++.h>
-using namespace std;
+      #include <bits/stdc++.h>
+      using namespace std;
 
-string caesarEncrypt(string text, int shift) {
-    string result = "";
+      string caesarEncrypt(string text, int shift) {
+          string result = "";
 
-    for (char c : text) {
-        if (isupper(c)) {
-            result += char((c - 'A' + shift) % 26 + 'A');
-        } 
-        else if (islower(c)) {
-            result += char((c - 'a' + shift) % 26 + 'a');
-        } 
-        else {
-            result += c;  // keep spaces and symbols same
-        }
-    }
+          for (char c : text) {
+              if (isupper(c)) {
+                  result += char((c - 'A' + shift) % 26 + 'A');
+              }
+              else if (islower(c)) {
+                  result += char((c - 'a' + shift) % 26 + 'a');
+              }
+              else {
+                  result += c;  // keep spaces and symbols same
+              }
+          }
 
-    return result;
-}
+          return result;
+      }
 
-int main() {
-    string text;
-    int shift;
+      int main() {
+          string text;
+          int shift;
 
-    cout << "Enter text: ";
-    getline(cin, text);
+          cout << "Enter text: ";
+          getline(cin, text);
 
-    cout << "Enter shift: ";
-    cin >> shift;
+          cout << "Enter shift: ";
+          cin >> shift;
 
-    string encrypted = caesarEncrypt(text, shift);
+          string encrypted = caesarEncrypt(text, shift);
 
-    cout << "\nEncrypted Text: " << encrypted << endl;
+          cout << "\nEncrypted Text: " << encrypted << endl;
 
-    return 0;
-}
-`;
+          return 0;
+      }
+      `;
       const str3 = `#include <bits/stdc++.h>
-using namespace std;
+      using namespace std;
 
-string caesarDecrypt(string text, int shift) {
-    string result = "";
+      string caesarDecrypt(string text, int shift) {
+          string result = "";
 
-    for (char c : text) {
-        if (isupper(c)) {
-            result += char((c - 'A' - shift + 26) % 26 + 'A');
-        } 
-        else if (islower(c)) {
-            result += char((c - 'a' - shift + 26) % 26 + 'a');
-        } 
-        else {
-            result += c; // Keep spaces/symbols same
-        }
-    }
+          for (char c : text) {
+              if (isupper(c)) {
+                  result += char((c - 'A' - shift + 26) % 26 + 'A');
+              }
+              else if (islower(c)) {
+                  result += char((c - 'a' - shift + 26) % 26 + 'a');
+              }
+              else {
+                  result += c; // Keep spaces/symbols same
+              }
+          }
 
-    return result;
-}
+          return result;
+      }
 
-int main() {
-    string text;
-    int shift;
+      int main() {
+          string text;
+          int shift;
 
-    cout << "Enter encrypted text: ";
-    getline(cin, text);
+          cout << "Enter encrypted text: ";
+          getline(cin, text);
 
-    cout << "Enter shift: ";
-    cin >> shift;
+          cout << "Enter shift: ";
+          cin >> shift;
 
-    string decrypted = caesarDecrypt(text, shift);
+          string decrypted = caesarDecrypt(text, shift);
 
-    cout << "\nDecrypted Text: " << decrypted << endl;
+          cout << "\nDecrypted Text: " << decrypted << endl;
 
-    return 0;
-}
-`;
+          return 0;
+      }
+      `;
       const str4 = `#include <bits/stdc++.h>
-using namespace std;
+      using namespace std;
 
-string transpositionEncrypt(string text, int key) {
-    vector<string> grid;
-    string row = "";
+      string transpositionEncrypt(string text, int key) {
+          vector<string> grid;
+          string row = "";
 
-    // Remove spaces (optional)
-    text.erase(remove(text.begin(), text.end(), ' '), text.end());
+          // Remove spaces (optional)
+          text.erase(remove(text.begin(), text.end(), ' '), text.end());
 
-    // Create rows of length = key
-    for (int i = 0; i < text.length(); i++) {
-        row += text[i];
-        if (row.length() == key) {
-            grid.push_back(row);
-            row = "";
-        }
-    }
+          // Create rows of length = key
+          for (int i = 0; i < text.length(); i++) {
+              row += text[i];
+              if (row.length() == key) {
+                  grid.push_back(row);
+                  row = "";
+              }
+          }
 
-    // If last row is short → pad with 'X'
-    if (!row.empty()) {
-        while (row.length() < key) row += 'X';
-        grid.push_back(row);
-    }
+          // If last row is short → pad with 'X'
+          if (!row.empty()) {
+              while (row.length() < key) row += 'X';
+              grid.push_back(row);
+          }
 
-    string cipher = "";
+          string cipher = "";
 
-    // Read column-wise
-    for (int col = 0; col < key; col++) {
-        for (int r = 0; r < grid.size(); r++) {
-            cipher += grid[r][col];
-        }
-    }
+          // Read column-wise
+          for (int col = 0; col < key; col++) {
+              for (int r = 0; r < grid.size(); r++) {
+                  cipher += grid[r][col];
+              }
+          }
 
-    return cipher;
-}
+          return cipher;
+      }
 
-int main() {
-    string text;
-    int key;
+      int main() {
+          string text;
+          int key;
 
-    cout << "Enter plain text: ";
-    getline(cin, text);
+          cout << "Enter plain text: ";
+          getline(cin, text);
 
-    cout << "Enter key (number of columns): ";
-    cin >> key;
+          cout << "Enter key (number of columns): ";
+          cin >> key;
 
-    string encrypted = transpositionEncrypt(text, key);
+          string encrypted = transpositionEncrypt(text, key);
 
-    cout << "\nEncrypted Text: " << encrypted << endl;
+          cout << "\nEncrypted Text: " << encrypted << endl;
 
-    return 0;
-}
-`;
+          return 0;
+      }
+      `;
       const str5 = `#include <bits/stdc++.h>
-using namespace std;
+      using namespace std;
 
-string transpositionDecrypt(string cipher, int key) {
-    int rows = cipher.length() / key;
+      string transpositionDecrypt(string cipher, int key) {
+          int rows = cipher.length() / key;
 
-    vector<vector<char>> grid(rows, vector<char>(key));
-    
-    int index = 0;
+          vector<vector<char>> grid(rows, vector<char>(key));
 
-    // Fill the grid column-wise
-    for (int col = 0; col < key; col++) {
-        for (int row = 0; row < rows; row++) {
-            grid[row][col] = cipher[index++];
-        }
-    }
+          int index = 0;
 
-    string plaintext = "";
+          // Fill the grid column-wise
+          for (int col = 0; col < key; col++) {
+              for (int row = 0; row < rows; row++) {
+                  grid[row][col] = cipher[index++];
+              }
+          }
 
-    // Read row-wise
-    for (int row = 0; row < rows; row++) {
-        for (int col = 0; col < key; col++) {
-            plaintext += grid[row][col];
-        }
-    }
+          string plaintext = "";
 
-    return plaintext;
-}
+          // Read row-wise
+          for (int row = 0; row < rows; row++) {
+              for (int col = 0; col < key; col++) {
+                  plaintext += grid[row][col];
+              }
+          }
 
-int main() {
-    string cipher;
-    int key;
+          return plaintext;
+      }
 
-    cout << "Enter cipher text: ";
-    getline(cin, cipher);
+      int main() {
+          string cipher;
+          int key;
 
-    cout << "Enter key (number of columns): ";
-    cin >> key;
+          cout << "Enter cipher text: ";
+          getline(cin, cipher);
 
-    string decrypted = transpositionDecrypt(cipher, key);
+          cout << "Enter key (number of columns): ";
+          cin >> key;
 
-    cout << "\nDecrypted Text: " << decrypted << endl;
+          string decrypted = transpositionDecrypt(cipher, key);
 
-    return 0;
-}
-`;
+          cout << "\nDecrypted Text: " << decrypted << endl;
+
+          return 0;
+      }
+      `;
       const str6 = `#include <bits/stdc++.h>
-using namespace std;
+      using namespace std;
 
-// Function to find gcd
-int gcd(int a, int b) {
-    if (b == 0) return a;
-    return gcd(b, a % b);
-}
+      // Function to find gcd
+      int gcd(int a, int b) {
+          if (b == 0) return a;
+          return gcd(b, a % b);
+      }
 
-// Function for modular exponentiation
-long long modPower(long long base, long long exp, long long mod) {
-    long long result = 1;
-    while (exp > 0) {
-        if (exp % 2 == 1)
-            result = (result * base) % mod;
-        base = (base * base) % mod;
-        exp /= 2;
-    }
-    return result;
-}
+      // Function for modular exponentiation
+      long long modPower(long long base, long long exp, long long mod) {
+          long long result = 1;
+          while (exp > 0) {
+              if (exp % 2 == 1)
+                  result = (result * base) % mod;
+              base = (base * base) % mod;
+              exp /= 2;
+          }
+          return result;
+      }
 
-int main() {
-    long long p, q, n, phi, e, d = 0;
+      int main() {
+          long long p, q, n, phi, e, d = 0;
 
-    cout << "Enter two primes p and q: ";
-    cin >> p >> q;
+          cout << "Enter two primes p and q: ";
+          cin >> p >> q;
 
-    n = p * q;
-    phi = (p - 1) * (q - 1);
+          n = p * q;
+          phi = (p - 1) * (q - 1);
 
-    // choose public key e
-    cout << "Enter e (1 < e < phi and gcd(e,phi)=1): ";
-    cin >> e;
+          // choose public key e
+          cout << "Enter e (1 < e < phi and gcd(e,phi)=1): ";
+          cin >> e;
 
-    // find private key d
-    for (int i = 1; i < phi; i++) {
-        if ((e * i) % phi == 1) {
-            d = i;
-            break;
-        }
-    }
+          // find private key d
+          for (int i = 1; i < phi; i++) {
+              if ((e * i) % phi == 1) {
+                  d = i;
+                  break;
+              }
+          }
 
-    cout << "Public Key: (" << e << ", " << n << ")\n";
-    cout << "Private Key: (" << d << ", " << n << ")\n";
+          cout << "Public Key: (" << e << ", " << n << ")\n";
+          cout << "Private Key: (" << d << ", " << n << ")\n";
 
-    long long message;
-    cout << "Enter message (number): ";
-    cin >> message;
+          long long message;
+          cout << "Enter message (number): ";
+          cin >> message;
 
-    // Encryption
-    long long cipher = modPower(message, e, n);
-    cout << "Encrypted: " << cipher << endl;
+          // Encryption
+          long long cipher = modPower(message, e, n);
+          cout << "Encrypted: " << cipher << endl;
 
-    // Decryption
-    long long decrypted = modPower(cipher, d, n);
-    cout << "Decrypted: " << decrypted << endl;
+          // Decryption
+          long long decrypted = modPower(cipher, d, n);
+          cout << "Decrypted: " << decrypted << endl;
 
-    return 0;
-}
-`;
+          return 0;
+      }
+      `;
       const str7 = `#include <bits/stdc++.h>
-using namespace std;
+      using namespace std;
 
-int main() {
-    string text;
-    cout << "Enter text: ";
-    getline(cin, text);
+      int main() {
+          string text;
+          cout << "Enter text: ";
+          getline(cin, text);
 
-    int countLetters = 0;
+          int countLetters = 0;
 
-    for(char c : text) {
-        if (isalpha(c)) {   // checks if character is A-Z or a-z
-            countLetters++;
-        }
-    }
+          for(char c : text) {
+              if (isalpha(c)) {   // checks if character is A-Z or a-z
+                  countLetters++;
+              }
+          }
 
-    cout << "Total Letters: " << countLetters << endl;
+          cout << "Total Letters: " << countLetters << endl;
 
-    return 0;
-}
-`;
+          return 0;
+      }
+      `;
       const str8 = `#include <bits/stdc++.h>
-using namespace std;
+      using namespace std;
 
-// Counting Sort used by Radix Sort (based on digit)
-void countingSort(vector<int> &arr, int exp) {
-    int n = arr.size();
-    vector<int> output(n);
-    int count[10] = {0};
+      // Counting Sort used by Radix Sort (based on digit)
+      void countingSort(vector<int> &arr, int exp) {
+          int n = arr.size();
+          vector<int> output(n);
+          int count[10] = {0};
 
-    // Count frequency of each digit
-    for (int i = 0; i < n; i++)
-        count[(arr[i] / exp) % 10]++;
+          // Count frequency of each digit
+          for (int i = 0; i < n; i++)
+              count[(arr[i] / exp) % 10]++;
 
-    // Convert to prefix sum
-    for (int i = 1; i < 10; i++)
-        count[i] += count[i - 1];
+          // Convert to prefix sum
+          for (int i = 1; i < 10; i++)
+              count[i] += count[i - 1];
 
-    // Build output array (iterate backwards to maintain stability)
-    for (int i = n - 1; i >= 0; i--) {
-        int digit = (arr[i] / exp) % 10;
-        output[count[digit] - 1] = arr[i];
-        count[digit]--;
-    }
+          // Build output array (iterate backwards to maintain stability)
+          for (int i = n - 1; i >= 0; i--) {
+              int digit = (arr[i] / exp) % 10;
+              output[count[digit] - 1] = arr[i];
+              count[digit]--;
+          }
 
-    // Copy back
-    for (int i = 0; i < n; i++)
-        arr[i] = output[i];
-}
+          // Copy back
+          for (int i = 0; i < n; i++)
+              arr[i] = output[i];
+      }
 
-// Radix Sort
-void radixSort(vector<int> &arr) {
-    int maxVal = *max_element(arr.begin(), arr.end());
+      // Radix Sort
+      void radixSort(vector<int> &arr) {
+          int maxVal = *max_element(arr.begin(), arr.end());
 
-    // Process digits: 1s, 10s, 100s, ...
-    for (int exp = 1; maxVal / exp > 0; exp *= 10)
-        countingSort(arr, exp);
-}
+          // Process digits: 1s, 10s, 100s, ...
+          for (int exp = 1; maxVal / exp > 0; exp *= 10)
+              countingSort(arr, exp);
+      }
 
-int main() {
-    int n;
-    cout << "Enter size: ";
-    cin >> n;
+      int main() {
+          int n;
+          cout << "Enter size: ";
+          cin >> n;
 
-    vector<int> arr(n);
-    cout << "Enter elements: ";
-    for (int i = 0; i < n; i++)
-        cin >> arr[i];
+          vector<int> arr(n);
+          cout << "Enter elements: ";
+          for (int i = 0; i < n; i++)
+              cin >> arr[i];
 
-    radixSort(arr);
+          radixSort(arr);
 
-    cout << "\nSorted array: ";
-    for (int x : arr) cout << x << " ";
+          cout << "\nSorted array: ";
+          for (int x : arr) cout << x << " ";
 
-    return 0;
-}
-`;
+          return 0;
+      }
+      `;
+      const str9 = `https://drive.google.com/drive/folders/1XnfVPEvkNsEeVbhEtu-aO5rXVBd3_ZXU?usp=sharing`;
       // ---------------------------------
       // COPY FUNCTION
       // ---------------------------------
